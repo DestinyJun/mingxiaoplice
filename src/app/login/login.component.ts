@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
           window.alert(this.loginMsg);
         }
       });
+    } else {
+      window.alert('请输入合法的用户名和密码');
     }
  }
 }

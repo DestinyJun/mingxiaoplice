@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {mobileValidators, mobileAsyncValidators, equalValidators } from '../validator/Validators';
+import {mobileValidators} from '../validator/Validators';
 import {LoginService} from '../shared/login.service';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -11,38 +12,32 @@ import {ActivatedRoute, Route, Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   public inviteCode: string;
-  public name: string;
   public errorMessage: string;
   public errorHidden: boolean;
-  public formModel: FormGroup;
+  public myFormModel: FormGroup;
   constructor(
     private routerInfo: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private loginService: LoginService
-  ) {
-    this.inviteCode = this.routerInfo.snapshot.params['invitecode'];
-    this.name = this.routerInfo.snapshot.params['name'];
-    this.errorHidden = true;
-    this.formModel = fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+    private loginService: LoginService,
+    private titleService: Title
+  ) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('账号注册');
+    // this.inviteCode = this.routerInfo.snapshot.params['invitecode'];
+    // this.errorHidden = true;
+    this.myFormModel = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(2)]],
       phone: ['', [mobileValidators]],
-      bank: [''],
-      adress: [''],
-      adress1: [''],
-      adress2: [''],
-      card: [''],
-      weixin: ['', [Validators.required]],
-      inviteCode: [this.inviteCode],
+      card: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       pconfirm: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-
-  ngOnInit() {}
   public onSubmit(): void {
-    if (this.formModel.valid) {
-      this.loginService.getRegister(this.formModel.value).subscribe((date) => {
+    if (this.myFormModel.valid) {
+      this.loginService.getRegister(this.myFormModel.value).subscribe((date) => {
         this.errorMessage = date.msg;
         this.errorHidden = date.success;
         if (date.success) {
@@ -51,7 +46,7 @@ export class RegisterComponent implements OnInit {
         }
       });
     } else {
-      alert('用户名不合法或用户名或者密码不能为空');
+      alert('请填写合法的注册资料');
     }
   }
 }

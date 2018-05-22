@@ -1,63 +1,58 @@
-<div class="title">
-  <a [routerLink]="['/login']" class="get-back">
-    <i class="fa fa-angle-left" aria-hidden="true"></i>
-  </a>
-  <span class="h6">欢迎您加入浩仁缘</span>
-</div>
-<h4 class="text-danger text-center">扫码注册，欢迎加入{{name}}的团队！</h4>
-<form [formGroup]="formModel" (submit)="onSubmit()" class="forms" novalidate>
-  <div class="form-group">
-    <label for="name">昵称</label>
-    <input formControlName="name" type="text" class="form-control" id="name" placeholder="请输入与昵称">
-  </div>
-  <div class="form-group">
-    <label for="phone">手机号</label>
-    <input formControlName="phone" type="number" class="form-control" id="phone" placeholder="请输入手机号">
-    <div *ngIf="formModel.get('phone').invalid && (formModel.get('phone').dirty || formModel.get('phone').touched)" class="col-sm-2 control-label text-danger ">
-      <div *ngIf="formModel.get('phone').errors.required">
-        用户名不能为空
-      </div>
-      <div *ngIf="formModel.get('phone').hasError('mobileValidators','username')">
-        请输入合法的手机号
+<div class="register">
+  <form [formGroup]="myFormModel" (submit)="onSubmit()" class="forms" novalidate>
+    <!--姓名-->
+    <div class="form-group">
+      <label for="username">姓名</label>
+      <input formControlName="username" type="text" class="form-control" id="username" placeholder="请输入姓名">
+      <div *ngIf="myFormModel.get('username').invalid && (myFormModel.get('username').dirty || myFormModel.get('username').touched)" class="control-label text-danger">
+        <div style="color:white;" *ngIf="myFormModel.hasError('required','username')">
+          姓名不能为空
+        </div>
+        <div style="color:white;" *ngIf="myFormModel.hasError('minlength','username')">
+          姓名最少为两个汉字
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="bank">银行卡卡号</label>
-    <input formControlName="bank" type="number" class="form-control" id="bank" placeholder="请输入银行卡">
-  </div>
-  <div class="form-group">
-    <label for="adress">开户行</label>
-    <input formControlName="adress" type="text" class="form-control" id="adress" placeholder="请输入开户行地址">
-  </div>
-  <div class="form-group">
-    <label for="adress1">地址</label>
-    <input formControlName="adress1" type="text" class="form-control" id="adress1" placeholder="请输入地址">
-  </div>
-  <div class="form-group">
-    <label for="adress2">实际收货地址</label>
-    <input formControlName="adress2" type="text" class="form-control" id="adress2" placeholder="请输入收货地址">
-  </div>
-  <div class="form-group">
-    <label for="card">身份证号</label>
-    <input formControlName="card" type="text" class="form-control" id="card" placeholder="请输入手机号">
-  </div>
-  <div class="form-group">
-    <label for="weixin">微信号</label>
-    <input formControlName="weixin" type="text" class="form-control" id="weixin" placeholder="请输入微信号">
-  </div>
-  <div class="form-group">
-    <label for="inviteCode">邀请码</label>
-    <input  formControlName="inviteCode" type="text" class="form-control" id="inviteCode" [value]="inviteCode" disabled>
-  </div>
-  <div class="form-group">
+    <!--手机号-->
+    <div class="form-group">
+      <label for="phone">手机号</label>
+      <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="请输入手机号">
+      <div *ngIf="myFormModel.get('phone').invalid && (myFormModel.get('phone').dirty || myFormModel.get('phone').touched)" class="control-label text-danger ">
+          <div style="color: white;" *ngIf="!(myFormModel.get('phone').hasError('mobileValidators','phone'))">
+            请输入合法的手机号
+          </div>
+      </div>
+    </div>
+    <!--身份证号-->
+    <div class="form-group">
+      <label for="card" class="control-label">身份证</label>
+      <input formControlName="card" type="text" class="form-control" id="card" placeholder="请输入身份证号">
+      <div *ngIf="myFormModel.get('card').invalid && (myFormModel.get('card').dirty || myFormModel.get('card').touched)" class="control-label text-danger ">
+        <div style="color: white" *ngIf="myFormModel.get('card').errors.required">身份证是必填项</div>
+        <div style="color: white" *ngIf="myFormModel.get('card').errors.minlength">身份证位数不能小于18位</div>
+        <div style="color: white" *ngIf="myFormModel.get('card').errors.maxlength">身份证位数不能大于18位</div>
+      </div>
+    </div>
+    <!--密码-->
+    <div class="form-group">
       <label for="password">密码</label>
       <input  formControlName="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+      <div *ngIf="myFormModel.get('password').invalid && (myFormModel.get('password').dirty || myFormModel.get('password').touched)" class="control-label text-danger ">
+        <div style="color: white" *ngIf="myFormModel.get('password').errors.required">密码是必填项</div>
+        <div style="color: white" *ngIf="myFormModel.get('password').errors.minlength">密码位数不能小于六位</div>
+      </div>
     </div>
-  <div class="form-group">
-    <label for="pconfirm">确认密码</label>
-    <input  formControlName="pconfirm" type="password" class="form-control" id="pconfirm" placeholder="请再次输入密码">
-  </div>
-  <div style="color: red" [hidden]="errorHidden">{{errorMessage}}</div>
-  <button type="button" class="btn btn-success btn-block" (click)="onSubmit()">注册</button>
-</form>
+    <div class="form-group">
+      <label for="pconfirm">确认密码</label>
+      <input  formControlName="pconfirm" type="password" class="form-control" id="pconfirm" placeholder="请再次输入密码">
+      <div *ngIf="myFormModel.get('pconfirm').invalid && (myFormModel.get('pconfirm').dirty || myFormModel.get('pconfirm').touched)" class="control-label text-danger ">
+        <div style="color: white" *ngIf="myFormModel.get('pconfirm').errors.required">密码是必填项</div>
+        <div style="color: white" *ngIf="myFormModel.get('pconfirm').errors.minlength">密码位数不能小于六位</div>
+      </div>
+    </div>
+    <div style="color: red" [hidden]="errorHidden">{{errorMessage}}</div>
+    <button type="button" style="margin-top: 15px" class="btn btn-danger btn-block" (click)="onSubmit()">注册</button>
+    <a [routerLink]="['/login']">已经注册？点击登陆</a>
+  </form>
+</div>
+
