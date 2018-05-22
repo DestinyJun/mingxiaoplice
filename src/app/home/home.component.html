@@ -1,0 +1,247 @@
+<div class="header">
+  <a [routerLink]="['/audit',loginName,grade]">
+    <i class="fa fa-smile-o" aria-hidden="true"></i>
+    <span>审核列表</span>
+  </a>
+  <i class="fa fa-share-square-o pull-right" aria-hidden="true" [routerLink]="['/qrcode',name,inviteCode]"></i>
+  <i class="fa fa-user-circle-o pull-right" aria-hidden="true"></i>
+</div>
+<div class="center-image">
+  <i></i>
+  <span class="text-danger text-left" [hidden]="grade===0">您目前的等级是【{{grade}}】级，下一级升级为【{{grade+1}}】级需支付300元红包，如需升级请点击“申请升级”按钮,升级后将有资格结交更多朋友。</span>
+  <span class="text-danger text-left" [hidden]="!(grade===0)">您当前的级数是10级，恭喜您成为我们的顶级会员！！！</span>
+</div>
+<div class="container">
+  <!--会员资料-->
+  <div class="member-info">
+    <div class="member-info-title">
+      <span>会员资料</span>
+    </div>
+    <div class="member-info-table">
+      <table class="table">
+        <tr>
+          <td>我的昵称</td>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <td>我的微信</td>
+          <td>{{weixin}}</td>
+        </tr>
+        <tr>
+          <td>我的手机</td>
+          <td>{{loginName}}</td>
+        </tr>
+        <tr>
+          <td>我的级别</td>
+          <td>
+            <span class="lv">LV <span>{{gradeTxt}}</span></span>
+          </td>
+        </tr>
+        <tr>
+          <td>银行卡号</td>
+          <td>
+            {{bank}}
+          </td>
+        </tr>
+        <tr>
+          <td>开 户 行</td>
+          <td>
+            {{address}}
+          </td>
+        </tr>
+        <tr>
+          <td>我的籍贯</td>
+          <td>
+            {{address1}}
+          </td>
+        </tr>
+        <tr>
+          <td>收货地址</td>
+          <td>
+            {{address2}}
+          </td>
+        </tr>
+        <tr>
+          <td>身份证号</td>
+          <td>
+            {{card}}
+          </td>
+        </tr>
+        <tr>
+          <td>邀 请 码</td>
+          <td>
+            <span>{{inviteCode}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="member-info-btn">
+      <button class="btn btn-danger" (click)="openModal(upGrade)" *ngIf="!(grade===0 || upGradeStatus === 1 || inviteStatus === 0 || masterStatus === 0)">申请升级</button>
+      <button class="btn btn-primary" (click)="openPerson(person)" style="margin-right: 10px">修改资料</button>
+      <button class="btn btn-success" (click)="personDelId(id);openModal(personWin)">修改密码</button>
+    </div>
+    <hr>
+  </div>
+  <!--好友状况-->
+  <div class="friends-status">
+    <div class="friends-status-title">
+      <span>好友状况</span>id
+    </div>
+    <div class="friends-status-table">
+      <table class="table">
+        <tr>
+          <td>直接人数</td>
+          <td>
+            <span style="color: red">{{friendPersonList?.length}}</span>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a [routerLink]="['/friend', '直接人数',loginName]">查看详细</a>
+          </td>
+        </tr>
+        <tr>
+          <td>上级好友</td>
+          <td>
+            <span style="color: red">{{friendUpList?.length}}</span>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a [routerLink]="['/friend','上级好友',loginName]">查看详细</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="friends-status-btn">
+      <a class="btn btn-danger" [routerLink]="['/qrcode',name,inviteCode]" [hidden]="inviteStatus===0 || masterStatus===0">邀请好友</a>
+    </div>
+    <hr>
+  </div>
+  <!--人员管理-->
+  <div class="review-status" [hidden]="personState" >
+    <div class="review-status-title">
+      <span>人员管理</span>
+    </div>
+    <div class="review-status-table">
+      <table class="table">
+        <thead style="background: #EDFFFF;">
+        <tr>
+          <th>会员/微信/手机</th>
+          <th>级别</th>
+          <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let list of personList">
+          <td>
+            <p>昵称：{{list.name}}</p>
+            <p>微信：{{list.weixin}}</p>
+            <p>电话：{{list.phone}}</p>
+          </td>
+          <td>{{list.grade}}</td>
+          <td>
+            <button class="btn btn-success" (click)="personDelId(list.id);openModal(personWin)">修改密码</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div>
+        <ul class="pagination">
+          <li style="margin-right: 20px">
+            <a href="javascript:" aria-label="Previous" (click)="previousPage()">
+            <button aria-hidden="true" class="btn-primary">上一页</button>
+          </a>
+          </li>
+          <li>
+            <a href="javascript:" aria-label="Next" (click)="nextPage()">
+              <button aria-hidden="true" class="btn-primary">下一页</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <!--安全推出-->
+  <div class="">
+    <a [routerLink]="['/login']" class="btn btn-danger btn-block">安全退出</a>
+  </div>
+</div>
+<!--升级弹窗-->
+<ng-template #upGrade>
+  <div class="modal-body">
+    <h5 class=" text-info text-center">确认要升级吗???</h5>
+    <div class="btn-box text-center">
+      <button type="button" class="btn btn-info"  (click)="clickUpGrade();modalRef.hide()">确认</button>
+      <button type="button" class="btn btn-danger"  (click)="modalRef.hide()">取消</button>
+    </div>
+  </div>
+</ng-template>
+<!--修改资料弹窗-->
+<ng-template #person>
+  <div class="modal-body">
+    <h5 class=" text-info text-center">修改个人资料</h5>
+    <hr>
+    <form [formGroup]="formModel"  class="forms" novalidate>
+      <div class="form-group">
+        <label for="name">昵称</label>
+        <input formControlName="name" type="text" class="form-control" id="name" >
+        <div [hidden]="formModel.get('name').valid || formModel.get('name').untouched">
+          <div style="color: red" [hidden]="!formModel.hasError('required', 'name')">昵称是必填项</div>
+          <div style="color: red" [hidden]="!formModel.hasError('minlength', 'name')">昵称最小长度为3</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="weixin">微信号</label>
+        <input formControlName="weixin" type="text" class="form-control" id="weixin">
+        <div [hidden]="formModel.get('weixin').valid || formModel.get('weixin').untouched">
+          <div style="color: red" [hidden]="!formModel.hasError('required', 'weixin')">微信号是必填项</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bank">银行卡卡号</label>
+        <input formControlName="bank" type="number" class="form-control" id="bank">
+      </div>
+      <div class="form-group">
+        <label for="address">开户行</label>
+        <input formControlName="address" type="text" class="form-control" id="address">
+      </div>
+      <div class="form-group">
+        <label for="address1">地址</label>
+        <input formControlName="address1" type="text" class="form-control" id="address1" >
+      </div>
+      <div class="form-group">
+        <label for="address2">实际收货地址</label>
+        <input formControlName="address2" type="text" class="form-control" id="address2">
+      </div>
+      <div class="form-group">
+        <label for="card">身份证号</label>
+        <input formControlName="card" type="text" class="form-control" id="card">
+      </div>
+    </form>
+    <hr>
+    <div class="btn-box text-center">
+      <button type="submit" class="btn btn-info"  (click)="upPersonMsg();modalRef.hide()">确认</button>
+      <button type="button" class="btn btn-danger"  (click)="modalRef.hide()">取消</button>
+    </div>
+  </div>
+</ng-template>
+<!--修改密码弹窗-->
+<ng-template #personWin>
+  <div class="modal-body">
+    <h5 class=" text-info text-center">修改密码</h5>
+    <hr>
+    <form [formGroup]="formModelUp"  class="forms" novalidate>
+      <div class="form-group">
+        <label for="weixin">新密码</label>
+        <input formControlName="pwd" type="text" class="form-control" id="pwd">
+        <div [hidden]="formModel.get('weixin').valid || formModel.get('weixin').untouched">
+          <div style="color: red" [hidden]="!formModel.hasError('required', 'weixin')">微信号是必填项</div>
+        </div>
+      </div>
+    </form>
+    <hr>
+    <div class="btn-box text-center">
+      <button type="button" class="btn btn-info"  (click)="personDel();modalRef.hide()">确认</button>
+      <button type="button" class="btn btn-danger"  (click)="modalRef.hide()">取消</button>
+    </div>
+  </div>
+</ng-template>
+
+
+

@@ -1,0 +1,38 @@
+<div class="title">
+  <a (click)="goBack()" class="get-back">
+    <i class="fa fa-angle-left" aria-hidden="true"></i>
+  </a>
+  <span class="h6">{{title}}</span>
+</div>
+<div class="container">
+  <div class="review-status">
+    <div class="review-status-table">
+      <table class="table">
+        <thead style="background: #EDFFFF;">
+        <tr>
+          <th>申请时间</th>
+          <th>会员/微信/手机</th>
+          <th>级别</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let list of personList">
+          <td #tdid>{{list.createTime}}</td>
+          <td>
+            <p>昵称：{{list.name}}</p>
+            <p>微信：{{list.weixin}}</p>
+            <p>电话：{{list.phone}}</p>
+          </td>
+          <td>
+            {{list.grade==0?'管理员':list.grade}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+  </div>
+  <div class="">
+    <a [routerLink]="['/login']" class="btn btn-danger btn-block">安全退出</a>
+  </div>
+</div>

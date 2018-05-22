@@ -1,0 +1,64 @@
+.login{
+  display: -webkit-flex;
+  display: flex;
+  flex-direction:column;
+  height: 100vh;
+  background-image: url('/assets/images/bg_list.png');
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  padding: 10vh 10px;
+}
+
+.header{
+  color: white;
+  padding: 10px 20px;
+  align-self: center;
+}
+.header-notice,.header-merchant{
+  background: #C9302C;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.login-from{
+  width: 100%;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  color: white;
+}
+.login-from button{
+  margin-bottom: 20px;
+}
+.login-from a{
+  color: white;
+}
+.login-from>h4{
+  padding: 5px;
+}
+
+
+
+
+.center-image{
+  margin-bottom: 20px;
+}
+
+
+
+.footer{
+  align-self: center;
+  color: white;
+}
+
+/*bootstrap改造*/
+.pull-right{
+  float: right;
+  padding-top: 10px;
+}
+.img-responsive{
+  width: 100%;
+  height: 200px;
+  display: block;
+}
