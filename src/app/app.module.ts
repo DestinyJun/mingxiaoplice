@@ -1,4 +1,4 @@
-import {BrowserModule, Title} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app.routing.module';
@@ -21,7 +21,6 @@ import {LocalStorageService} from './shared/local-storage.service';
     LoginService,
     LocalStorageService,
     LoginGuard,
-    Title,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
