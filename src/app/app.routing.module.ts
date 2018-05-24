@@ -5,6 +5,7 @@ const routes: Routes = [
   {path: 'login', loadChildren: 'app/login/login.module#LoginModule'},
   {path: 'register', loadChildren: 'app/register/register.module#RegisterModule'},
   {path: 'alarm', loadChildren: 'app/alarm/alarm.module#AlarmModule'},
+  {path: 'transaction', loadChildren: 'app/transaction/transaction.module#TransactionModule'},
   /*{path: 'registerrs', component: RegisterRsComponent},
   {path: 'register/:invitecode/:name', component: RegisterComponent},
   {path: 'home', component: HomeComponent, canActivate: [LoginGuard]},

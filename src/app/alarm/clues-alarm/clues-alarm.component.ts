@@ -3,18 +3,18 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-penal-alarm',
-  templateUrl: './penal-alarm.component.html',
-  styleUrls: ['./penal-alarm.component.css']
+  selector: 'app-clues-alarm',
+  templateUrl: './clues-alarm.component.html',
+  styleUrls: ['./clues-alarm.component.css']
 })
-export class PenalAlarmComponent implements OnInit {
+export class CluesAlarmComponent implements OnInit {
 
   public myForm: FormGroup;
   public myFormTwo: FormGroup;
   constructor(private titleService: Title, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.titleService.setTitle('刑事案件报警');
+    this.titleService.setTitle('犯罪线索举报');
     this.myForm = this.fb.group({
       location: [{value: '', disabled: false}, []],
       username: ['', []],
@@ -48,5 +48,4 @@ export class PenalAlarmComponent implements OnInit {
       };
     }
   }
-
 }

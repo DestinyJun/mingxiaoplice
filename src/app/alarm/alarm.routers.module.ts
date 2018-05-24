@@ -5,6 +5,7 @@ import {SecurityAlarmComponent} from './security-alarm/security-alarm.component'
 import {PenalAlarmComponent} from './penal-alarm/penal-alarm.component';
 import {SafetyAlarmComponent} from './safety-alarm/safety-alarm.component';
 import {MainAlarmComponent} from './main-alarm/main-alarm.component';
+import {CluesAlarmComponent} from './clues-alarm/clues-alarm.component';
 const loginRoutes: Routes = [
   {
     path: '',
@@ -14,7 +15,8 @@ const loginRoutes: Routes = [
       {path: 'main', component: MainAlarmComponent},
       {path: 'security', component: SecurityAlarmComponent},
       {path: 'penal', component: PenalAlarmComponent},
-      {path: 'safety', component: SafetyAlarmComponent}
+      {path: 'safety', component: SafetyAlarmComponent},
+      {path: 'clues', component: CluesAlarmComponent}
     ]
   },
 ];
