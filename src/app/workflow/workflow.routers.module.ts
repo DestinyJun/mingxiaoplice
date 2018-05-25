@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TransactionComponent} from './transaction.component';
+import {WorkflowComponent} from './workflow.component';
 const loginRoutes: Routes = [
   {
     path: '',
-    component: TransactionComponent,
+    component: WorkflowComponent,
     children: [
       // {path: '', redirectTo: 'main', pathMatch: 'full'},
       // {path: 'main', component: MainTransactionComponent}
@@ -18,4 +18,4 @@ const loginRoutes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class TransactionRoutersModule {}
+export class WorkflowRoutersModule {}
