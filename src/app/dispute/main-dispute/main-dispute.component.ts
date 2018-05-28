@@ -10,7 +10,7 @@ export class MainDisputeComponent implements OnInit {
   public navList = [
     [
       {name: '林权纠纷', url: '../disform'},
-      {name: '土地承包纠纷', url: '../disform'}
+      {name: '土地纠纷', url: '../disform'}
     ],
     [
       {name: '家事纠纷', url: '../disform'},
@@ -21,7 +21,7 @@ export class MainDisputeComponent implements OnInit {
       {name: '相邻纠纷', url: '../disform'}
     ],
     [
-      {name: '合同纠纷等', url: '../disform'},
+      {name: '合同纠纷', url: '../disform'},
     ]
   ];
   constructor(private titleService: Title) { }

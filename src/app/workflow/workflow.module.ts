@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { WorkflowComponent } from './workflow.component';
 import {WorkflowRoutersModule} from './workflow.routers.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MianWorkflowComponent } from './mian-workflow/mian-workflow.component';
+import { FromWorkflowComponent } from './from-workflow/from-workflow.component';
 
 @NgModule({
   imports: [
@@ -10,6 +12,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     WorkflowRoutersModule,
     ReactiveFormsModule
   ],
-  declarations: [WorkflowComponent]
+  declarations: [WorkflowComponent, MianWorkflowComponent, FromWorkflowComponent]
 })
 export class WorkflowModule { }
