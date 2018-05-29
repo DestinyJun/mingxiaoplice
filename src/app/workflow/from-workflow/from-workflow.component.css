@@ -1,0 +1,28 @@
+.filebox{
+  width: 60px;
+  height: 60px;
+  border: 1px solid #767676;
+  padding: 5px;
+  position: relative;
+}
+.fileboxline{
+  position: absolute;
+  height: 1px;
+  width: 45px;
+  background: #767676;
+  top: 28px;
+
+}
+.fileboxlineTwo{
+  position: absolute;
+  border-left:  1px solid #767676;
+  height: 45px;
+  width: 45px;
+  left: 28px;
+}
+.file-image{
+  margin-top: 15px;
+}
+.error{
+  color:red;
+}

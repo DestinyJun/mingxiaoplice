@@ -8,7 +8,7 @@
       *ngFor="let listItem of list;let i =index"
       class="btn btn-lg btn-danger"
       [ngClass]="{'pull-right':i > 0}"
-      [routerLink]="[listItem.url]" [queryParams]="{name: listItem.name}">
+      [routerLink]="[listItem.url]" [queryParams]="{name: listItem.name,txt: listItem.text}">
       {{listItem.name}}
     </a>
   </div>

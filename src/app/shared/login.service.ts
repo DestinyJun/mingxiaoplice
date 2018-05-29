@@ -13,10 +13,17 @@ export class LoginService {
   public getRegister(params): Observable<any> {
     return this.http.get('/api/user/addUser', {params});
   }
-  // 获取个人信息
-  public getPerson(params): Observable<any> {
-    return this.http.get('/api/user/selectPersonal', {params});
+  // 报警
+  /*public addRecord(params): Observable<any> {
+    return this.http.get('/net/record/addRecord', {params});
+  }*/
+
+  // 文件上传
+  public addRecord(body): Observable<any> {
+    console.log(body);
+    return this.http.post('/net/record/addRecord', body);
   }
+
   // 修改信息
   public modifiedData(params): Observable<any> {
     console.log(params);
