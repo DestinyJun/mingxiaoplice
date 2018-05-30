@@ -48,7 +48,7 @@ export class MianWorkflowComponent implements OnInit {
    `}
     ],
     [
-      {name: '控告申述', url: '../formwork', text: `
+      {name: '控告申诉', url: '../formwork', text: `
       <p>提交材料：</p>
       <p>1、 起诉状；</p>
       <p>2、原、被告的身份证明；</p>

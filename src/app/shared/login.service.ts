@@ -20,7 +20,6 @@ export class LoginService {
 
   // 文件上传
   public addRecord(body): Observable<any> {
-    console.log(body);
     return this.http.post('/net/record/addRecord', body);
   }
 

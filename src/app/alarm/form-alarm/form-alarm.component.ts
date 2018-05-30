@@ -5,11 +5,11 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../shared/login.service';
 declare let BMap;
 @Component({
-  selector: 'app-form-dispute',
-  templateUrl: './form-dispute.component.html',
-  styleUrls: ['./form-dispute.component.css']
+  selector: 'app-form-alarm',
+  templateUrl: './form-alarm.component.html',
+  styleUrls: ['./form-alarm.component.css']
 })
-export class FormDisputeComponent implements OnInit {
+export class FormAlarmComponent implements OnInit {
   public title: string;
   public myForm: FormGroup;
   // public myFormTwo: FormGroup;
@@ -104,7 +104,7 @@ export class FormDisputeComponent implements OnInit {
       this.fileDate.append('name', this.myForm.value.name);
       this.fileDate.append('phone', this.myForm.value.phone);
       this.fileDate.append('content', this.myForm.value.content);
-      this.fileDate.append('type', '矛盾纠纷诉求');
+      this.fileDate.append('type', '我要报警');
       this.loginService.addRecord(this.fileDate).subscribe((data) => {
         if (data.success) {
           window.alert(data.msg);

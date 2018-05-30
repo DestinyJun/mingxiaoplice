@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../shared/login.service';
+declare let BMap;
 import {
   ControlAnchor,
   GeolocationControlOptions,
@@ -15,14 +16,12 @@ import {
   BNavigationControl,
   BGeolocationControl,
 } from 'angular2-baidu-map';
-
 @Component({
   selector: 'app-from-workflow',
   templateUrl: './from-workflow.component.html',
   styleUrls: ['./from-workflow.component.css']
 })
 export class FromWorkflowComponent implements OnInit {
-  public locations: BGeolocationControl;
   public opts: MapOptions;
   public markers: Array<{ point: Point; options?: MarkerOptions }>;
   public controlOpts: NavigationControlOptions;
@@ -31,24 +30,28 @@ export class FromWorkflowComponent implements OnInit {
   public mapTypeOpts: MapTypeControlOptions;
   public geolocationOpts: GeolocationControlOptions;
   /**************************************************/
+  public that: any;
+  public locationTxt: string;
+  public locationState = false;
   public title: string;
   public text: any;
   public myForm: FormGroup;
   public myFormTwo: FormGroup;
   public fileDate: FormData = new FormData();
+
+  @ViewChild('baidumap') mapElement: ElementRef;
   constructor(
     private titleService: Title,
     private fb: FormBuilder,
     private routerInfo: ActivatedRoute,
-    private loginService: LoginService
-  ) { }
-
+    private loginService: LoginService,
+  ) {}
   ngOnInit() {
     this.title = this.routerInfo.snapshot.queryParams['name'];
     this.text = this.routerInfo.snapshot.queryParams['txt'];
+    this.locationTxt = '定位中......';
     this.titleService.setTitle(this.title);
     this.myForm = this.fb.group({
-      title: [{value: '贵阳', disabled: false}, [Validators.required]],
       name: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       content: ['', [Validators.required]],
@@ -79,7 +82,7 @@ export class FromWorkflowComponent implements OnInit {
       currentCity: '贵阳市',   // 设置当前的城市
     };
    // 这是地图标记marker
-    /*this.markers = [
+    this.markers = [
       {
         options: {
           icon: {
@@ -108,7 +111,7 @@ export class FromWorkflowComponent implements OnInit {
           lat: 31.31,    // 纬度
         }
       }
-    ];*/
+    ];
 
     // 导航控件
     this.controlOpts = {
@@ -142,6 +145,7 @@ export class FromWorkflowComponent implements OnInit {
 
     // location
     // console.log(this.locations.getAddressComponent());
+    this.ionViewWillEnter();
 
   }
   public fileboxClick(uploadfiles): void {
@@ -167,20 +171,69 @@ export class FromWorkflowComponent implements OnInit {
     }
   }
   public onSubmit(): void {
-    if (this.myForm.valid) {
-      console.log(this.myForm.value);
-      this.fileDate.append('title', this.myForm.value.title);
+    console.log(this.locationState);
+    if (this.myForm.valid && this.locationState) {
+      console.log(this.locationTxt);
+      this.fileDate.append('title', this.locationTxt);
       this.fileDate.append('name', this.myForm.value.name);
       this.fileDate.append('phone', this.myForm.value.phone);
       this.fileDate.append('content', this.myForm.value.content);
       this.fileDate.append('type', this.title);
       this.loginService.addRecord( this.fileDate).subscribe((data) => {
-        console.log(data);
+        if (data.success) {
+          window.alert(data.msg);
+        } else {
+          alert('提交失败');
+        }
       });
+    } else {
+      alert('参数不合法或者定位失败');
     }
   }
 
   /************************百度地图***************************/
+  public ionViewWillEnter() {
+    let that;
+    that = this;
+    let map = new BMap.Map(this.mapElement.nativeElement);
+    let point = new BMap.Point(106.681659, 26.627171);
+    map.centerAndZoom(point, 12);
+    let geolocation = new BMap.Geolocation();
+    console.log(this.locationTxt);
+    geolocation.getCurrentPosition(function (r) {
+      const geoc = new BMap.Geocoder();
+      geoc.getLocation(r.point, function (rs) {
+        that.locationTxt = rs.address;
+        that.locationState = true;
+      });
+    }, {enableHighAccuracy: true});
+    /*geolocation.getCurrentPosition(function (r) {
+      if (this.getStatus() === 0) {
+        console.log(r.point);
+        // var pt = new BMap.Point(r.point.lng,r.point.lat);
+        // console.log(pt);
+        let mk = new BMap.Marker(r.point);
+        map.addOverlay(mk);
+        // map.panTo(pt);
+        let geoc = new BMap.Geocoder();
+        // 创建一个地理位置解析器  解析格式：城市，区县，街道
+        geoc.getLocation(r.point, function (rs) {
+          // console.log(rs);
+          let locationText = rs.address;
+          alert('您的位置：' + rs.address);
+        });
+
+      } else {
+        console.log('请打开GPS' + this.getStatus());
+      }
+    }, {enableHighAccuracy: true});*/
+  }
+
+
+
+
+
+
   public loadMap(map: any) {
     console.log('map instance here', map);
   }
@@ -194,7 +247,8 @@ export class FromWorkflowComponent implements OnInit {
     // console.log('control loaded', control);
   }
   public localtionLoaded(locals): void {
-    console.log('gagagag', locals.C.BC);
+    console.log(locals);
+    // console.log('gagagag', locals.C.BC);
     this.markers =
       [
         {

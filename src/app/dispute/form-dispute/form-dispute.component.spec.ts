@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormDisputeComponent } from './form-dispute.component';
 
-describe('FormDisputeComponent', () => {
+describe('FormAlarmComponent', () => {
   let component: FormDisputeComponent;
   let fixture: ComponentFixture<FormDisputeComponent>;
 

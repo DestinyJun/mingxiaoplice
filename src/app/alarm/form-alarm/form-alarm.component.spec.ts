@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SafetyAlarmComponent } from './safety-alarm.component';
+import { FormAlarmComponent } from './form-dispute.component';
 
-describe('SafetyAlarmComponent', () => {
-  let component: SafetyAlarmComponent;
-  let fixture: ComponentFixture<SafetyAlarmComponent>;
+describe('FormAlarmComponent', () => {
+  let component: FormAlarmComponent;
+  let fixture: ComponentFixture<FormAlarmComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SafetyAlarmComponent ]
+      declarations: [ FormAlarmComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SafetyAlarmComponent);
+    fixture = TestBed.createComponent(FormAlarmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
