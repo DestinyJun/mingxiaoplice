@@ -104,7 +104,7 @@ export class FormAlarmComponent implements OnInit {
       this.fileDate.append('name', this.myForm.value.name);
       this.fileDate.append('phone', this.myForm.value.phone);
       this.fileDate.append('content', this.myForm.value.content);
-      this.fileDate.append('type', '我要报警');
+      this.fileDate.append('type', '报警平台');
       this.loginService.addRecord(this.fileDate).subscribe((data) => {
         if (data.success) {
           window.alert(data.msg);
