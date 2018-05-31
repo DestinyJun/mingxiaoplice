@@ -11,7 +11,7 @@ export class AlarmComponent implements OnInit {
   constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle('我要举报');
+    this.titleService.setTitle('我要报警');
   }
 
 }

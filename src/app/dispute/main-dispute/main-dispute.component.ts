@@ -27,7 +27,7 @@ export class MainDisputeComponent implements OnInit {
   constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle('矛盾纠纷诉求');
+    this.titleService.setTitle('纠纷诉求');
   }
 
 }

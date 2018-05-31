@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../shared/login.service';
+import {mobileValidators} from '../../validator/Validators';
 declare let BMap;
 @Component({
   selector: 'app-form-dispute',
@@ -16,7 +17,10 @@ export class FormDisputeComponent implements OnInit {
   public fileDate: FormData = new FormData();
   public locationTxt: string;
   public locationState = false;
-
+  public submitState = true;
+  public formName: any;
+  public formPhone: any;
+  public formContent: any;
   @ViewChild('baidumap') mapElement: ElementRef;
   constructor(
     private titleService: Title,
@@ -32,12 +36,12 @@ export class FormDisputeComponent implements OnInit {
     this.ionViewWillEnter();
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required, mobileValidators]],
       content: ['', [Validators.required]],
     });
-    /*this.myFormTwo = new FormGroup({
-      first: new FormControl({value: 'Nancy', disabled: true}, Validators.required),
-    });*/
+    this.formName = this.myForm.get('name');
+    this.formPhone = this.myForm.get('phone');
+    this.formContent = this.myForm.get('content');
   }
   /************************百度地图***************************/
   public ionViewWillEnter() {
@@ -54,26 +58,6 @@ export class FormDisputeComponent implements OnInit {
         that.locationState = true;
       });
     }, {enableHighAccuracy: true});
-    /*geolocation.getCurrentPosition(function (r) {
-      if (this.getStatus() === 0) {
-        console.log(r.point);
-        // var pt = new BMap.Point(r.point.lng,r.point.lat);
-        // console.log(pt);
-        let mk = new BMap.Marker(r.point);
-        map.addOverlay(mk);
-        // map.panTo(pt);
-        let geoc = new BMap.Geocoder();
-        // 创建一个地理位置解析器  解析格式：城市，区县，街道
-        geoc.getLocation(r.point, function (rs) {
-          // console.log(rs);
-          let locationText = rs.address;
-          alert('您的位置：' + rs.address);
-        });
-
-      } else {
-        console.log('请打开GPS' + this.getStatus());
-      }
-    }, {enableHighAccuracy: true});*/
   }
 
   /**************************************************/
@@ -99,21 +83,31 @@ export class FormDisputeComponent implements OnInit {
     }
   }
   public onSubmit(): void {
-    if (this.myForm.valid && this.locationState) {
-      this.fileDate.append('title', this.locationTxt);
-      this.fileDate.append('name', this.myForm.value.name);
-      this.fileDate.append('phone', this.myForm.value.phone);
-      this.fileDate.append('content', this.myForm.value.content);
-      this.fileDate.append('type', '矛盾纠纷诉求');
-      this.loginService.addRecord(this.fileDate).subscribe((data) => {
-        if (data.success) {
-          window.alert(data.msg);
+    if (this.myForm.valid ) {
+      if (this.locationState) {
+        if (this.submitState) {
+          this.submitState = false;
+          setTimeout(() => {
+            this.submitState = true;
+          }, 60000);
+          this.fileDate.append('title', this.locationTxt);
+          this.fileDate.append('name', this.myForm.value.name);
+          this.fileDate.append('phone', this.myForm.value.phone);
+          this.fileDate.append('content', this.myForm.value.content);
+          this.fileDate.append('type', '报警平台');
+          this.loginService.addRecord(this.fileDate).subscribe((data) => {
+            if (data.success) {
+              window.alert(data.msg);
+            } else {
+              alert('提交失败');
+            }
+          });
         } else {
-          alert('提交失败');
+          alert('一分钟后才可第二次提交');
         }
-      });
-    } else {
-      alert('参数不合法或者定位失败');
+      } else {
+        alert('请等待定位成功');
+      }
     }
   }
 

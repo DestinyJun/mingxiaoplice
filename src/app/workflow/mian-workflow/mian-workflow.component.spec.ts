@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MianWorkflowComponent } from './mian-workflow.component';
 
-describe('MianWorkflowComponent', () => {
+describe('MianFeedbackComponent', () => {
   let component: MianWorkflowComponent;
   let fixture: ComponentFixture<MianWorkflowComponent>;
 

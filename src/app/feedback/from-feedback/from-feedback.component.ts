@@ -18,11 +18,11 @@ import {
 } from 'angular2-baidu-map';
 import {mobileValidators} from '../../validator/Validators';
 @Component({
-  selector: 'app-from-workflow',
-  templateUrl: './from-workflow.component.html',
-  styleUrls: ['./from-workflow.component.css']
+  selector: 'app-from-feedback',
+  templateUrl: './from-feedback.component.html',
+  styleUrls: ['./from-feedback.component.css']
 })
-export class FromWorkflowComponent implements OnInit {
+export class FromFeedbackComponent implements OnInit {
   public opts: MapOptions;
   public markers: Array<{ point: Point; options?: MarkerOptions }>;
   public controlOpts: NavigationControlOptions;

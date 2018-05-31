@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {FromFeedbackComponent} from './from-feedback.component';
 
-import { FromWorkflowComponent } from './from-workflow.component';
 
 describe('FromFeedbackComponent', () => {
-  let component: FromWorkflowComponent;
-  let fixture: ComponentFixture<FromWorkflowComponent>;
+  let component: FromFeedbackComponent;
+  let fixture: ComponentFixture<FromFeedbackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FromWorkflowComponent ]
+      declarations: [ FromFeedbackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FromWorkflowComponent);
+    fixture = TestBed.createComponent(FromFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

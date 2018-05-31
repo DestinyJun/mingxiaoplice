@@ -2,32 +2,7 @@
   <h3 class="text-center" style="color: white">{{title}}流程</h3>
   <div style="color: white;font-size: 1.8rem" [innerHTML]="text"></div>
 </div>
-<div  #baidumap style="height: 50vh;display: none">
-  <!--<baidu-map style="display: block;height: 50vh" [options]="opts"
-             (loaded)="loadMap($event)"
-             (clicked)="clickmap($event)" >
-
-    &lt;!&ndash;地图标记&ndash;&gt;
-    <marker *ngFor="let marker of markers" [point]="marker.point" [options]="marker.options"  (clicked)="clickMarker($event)"></marker>
-
-    &lt;!&ndash;导航控件&ndash;&gt;
-    <control type="navigation" [options]="controlOpts" (loaded)="controlLoaded($event)"></control>
-
-    &lt;!&ndash;地图全景控件&ndash;&gt;
-    <control type="overviewmap" [options]="overviewmapOpts"></control>
-
-    &lt;!&ndash;比例尺&ndash;&gt;
-    <control type="scale" [options]="scaleOpts"></control>
-
-    &lt;!&ndash;地图类型&ndash;&gt;
-    <control type="maptype" [options]="mapTypeOpts"></control>
-
-    &lt;!&ndash;定位控件&ndash;&gt;
-    <control type="geolocation" [options]="geolocationOpts" (loaded)="localtionLoaded($event)"></control>
-
-
-  </baidu-map>-->
-</div>
+<div  #baidumap style="height: 50vh;display: none"></div>
 <div style="color:white;">
   <form class="form-horizontal" id="commentForm" [formGroup]="myForm" (submit)="onSubmit()">
     <!--定位-->
@@ -52,7 +27,7 @@
     </div>
     <!--联系方式-->
     <div class="form-group">
-      <label for="phoneNumber" required number class="col-sm-2 control-label">联系方式</label>
+      <label for="phoneNumber" required class="col-sm-2 control-label">联系方式</label>
       <div class="col-sm-10">
         <input type="text" formControlName="phone" class="form-control" required id="phoneNumber" name="phoneNumber" placeholder="请填写电话">
       </div>

@@ -81,23 +81,12 @@ export class MianWorkflowComponent implements OnInit {
       <p>3、申请公证的文书；</p>
       <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
       <p>5、与申请公证的事项有关的其他材料；</p>
-      `},
-      {name: '书记信箱', url: '../formwork', text: `
-      <p>请在下面的表单中填写个人信息及你想反馈的内容：</p>
-      `},
+      `}
     ],
-    [
-      {name: '我有话说', url: '../formwork', text: `
-      <p>请在下面的表单中填写个人信息及你想反馈的内容：</p>
-      `},
-      {name: '镇长信箱', url: '../formwork', text: `
-      <p>请在下面的表单中填写个人信息及你想反馈的内容：</p>
-      `},
-    ]
   ];
   constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle('矛盾纠纷诉求');
+    this.titleService.setTitle('我要咨询');
   }
 }
