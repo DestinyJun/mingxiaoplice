@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../shared/login.service';
@@ -31,7 +31,8 @@ export class FormDisputeComponent implements OnInit {
 
   ngOnInit() {
     this.locationTxt = '定位中......';
-    this.title = this.routerInfo.snapshot.queryParams['name'];
+    // this.title = this.routerInfo.snapshot.queryParams['name'];
+    this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
     this.titleService.setTitle(this.title);
     this.ionViewWillEnter();
     this.myForm = this.fb.group({
@@ -94,10 +95,10 @@ export class FormDisputeComponent implements OnInit {
           this.fileDate.append('name', this.myForm.value.name);
           this.fileDate.append('phone', this.myForm.value.phone);
           this.fileDate.append('content', this.myForm.value.content);
-          this.fileDate.append('type', '报警平台');
+          this.fileDate.append('type', '矛盾纠纷诉求');
           this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
-              window.alert(data.msg);
+              alert(data.msg);
             } else {
               alert('提交失败');
             }
@@ -108,6 +109,8 @@ export class FormDisputeComponent implements OnInit {
       } else {
         alert('请等待定位成功');
       }
+    } else {
+      alert('请输入资料');
     }
   }
 

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {LoginService} from '../../shared/login.service';
 declare let BMap;
 import {
@@ -52,8 +52,10 @@ export class FromWorkflowComponent implements OnInit {
     private loginService: LoginService,
   ) {}
   ngOnInit() {
-    this.title = this.routerInfo.snapshot.queryParams['name'];
-    this.text = this.routerInfo.snapshot.queryParams['txt'];
+    this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
+    this.routerInfo.params.subscribe((params: Params) => {
+      this.text = params['text'];
+    });
     this.locationTxt = '定位中......';
     this.titleService.setTitle(this.title);
     this.myForm = this.fb.group({
@@ -190,10 +192,10 @@ export class FromWorkflowComponent implements OnInit {
           this.fileDate.append('name', this.myForm.value.name);
           this.fileDate.append('phone', this.myForm.value.phone);
           this.fileDate.append('content', this.myForm.value.content);
-          this.fileDate.append('type', '报警平台');
+          this.fileDate.append('type', '我要办事');
           this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
-              window.alert(data.msg);
+              alert(data.msg);
             } else {
               alert('提交失败');
             }
@@ -204,6 +206,8 @@ export class FromWorkflowComponent implements OnInit {
       } else {
         alert('请等待定位成功');
       }
+    } else {
+      alert('请输入资料');
     }
   }
 
@@ -215,7 +219,6 @@ export class FromWorkflowComponent implements OnInit {
     let point = new BMap.Point(106.681659, 26.627171);
     map.centerAndZoom(point, 12);
     let geolocation = new BMap.Geolocation();
-    console.log(this.locationTxt);
     geolocation.getCurrentPosition(function (r) {
       const geoc = new BMap.Geocoder();
       geoc.getLocation(r.point, function (rs) {

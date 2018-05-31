@@ -1,6 +1,6 @@
 <div class="header text-center">
   <img src="assets/images/logo.png" alt="">
-  <span class="h3">闵孝镇政法110微信平台</span>
+  <span class="h4">闵孝镇政法110微信平台</span>
 </div>
 <div class="nav" *ngFor="let list of navList;">
   <div class="nav-child">
@@ -8,7 +8,7 @@
       *ngFor="let listItem of list;let i =index"
       class="btn btn-lg btn-danger"
       [ngClass]="{'pull-right':i > 0}"
-      [routerLink]="[listItem.url]" [queryParams]="{name: listItem.name,txt: listItem.text}">
+      [routerLink]="[listItem.url,{name: listItem.name,text: listItem.text}]">
       {{listItem.name}}
     </a>
   </div>

@@ -26,7 +26,7 @@
             <div class="form-group">
               <label for="name" class="col-sm-2 control-label">您的姓名</label>
               <div class="col-sm-10">
-                <input type="text" formControlName="name" minlength="4" maxlength="8" required class="form-control" id="name" placeholder="请填写" name="username">
+                <input type="text" formControlName="name"  class="form-control" id="name" placeholder="请填写" name="name">
               </div>
               <div *ngIf="formName.invalid && (formName.dirty || formName.touched)" class="col-sm-2 control-label">
                 <div *ngIf="formName.errors.required">
@@ -36,9 +36,9 @@
             </div>
             <!--联系方式-->
             <div class="form-group">
-              <label for="phoneNumber" required number class="col-sm-2 control-label">联系方式</label>
+              <label for="phone" number class="col-sm-2 control-label">联系方式</label>
               <div class="col-sm-10">
-                <input type="text" formControlName="phone" class="form-control" required id="phoneNumber" name="phoneNumber" placeholder="请填写电话">
+                <input type="text" formControlName="phone" class="form-control" id="phone" name="phone" placeholder="请填写电话">
               </div>
               <div *ngIf="formPhone.invalid && (formPhone.dirty || formPhone.touched)" class="col-sm-2 control-label">
                 <div *ngIf="!(formPhone.hasError('mobileValidators','username'))">
@@ -50,7 +50,7 @@
             <div class="form-group">
               <label for="describe" class="col-sm-2 control-label">事件描述</label>
               <div class="col-sm-10">
-                <textarea required class="form-control" formControlName="content" rows="3" id="describe" placeholder="请输入描述事时间内容" name="describe"></textarea>
+                <textarea class="form-control" formControlName="content" rows="3" id="describe" placeholder="请输入描述事时间内容" name="describe"></textarea>
               </div>
               <div *ngIf="formContent.invalid && (formPhone.dirty || formContent.touched)" class="col-sm-2 control-label">
                 <div *ngIf="formContent.errors.required">
@@ -62,7 +62,7 @@
             <div class="form-group">
               <label for="describe" style="margin-bottom: 25px" class="col-sm-2 control-label">上传图片</label>
               <div class="col-sm-12">
-                <input type="file" #uploadfiles required name="uploadfiles" style="display: none" id="uploadfiles" multiple (change)="onChangeFiles($event,fileImage)">
+                <input type="file" #uploadfiles name="uploadfiles" style="display: none" id="uploadfiles" multiple (change)="onChangeFiles($event,fileImage)">
                 <div class="filebox" id="filebox" (click)="fileboxClick(uploadfiles)">
                   <div class="fileboxline"></div>
                   <div class="fileboxlineTwo" style=""></div>

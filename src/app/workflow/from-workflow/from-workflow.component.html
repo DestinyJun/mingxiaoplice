@@ -1,96 +1,97 @@
-<div class="header">
-  <h3 class="text-center" style="color: white">{{title}}流程</h3>
-  <div style="color: white;font-size: 1.8rem" [innerHTML]="text"></div>
+<div class="container-fluid">
+  <div class="header">
+    <h3 class="text-center" style="color: white">{{title}}流程</h3>
+    <div style="color: white;font-size: 1.8rem" [innerHTML]="text"></div>
+  </div>
+  <div  #baidumap style="height: 50vh;display: none"></div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="top">
+          <h4>
+
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="menu">
+          <form class="form-horizontal" id="commentForm" [formGroup]="myForm" (submit)="onSubmit()">
+            <!--定位-->
+            <div class="form-group">
+              <div class="col-sm-10">
+                <span id="locationText" #locationspan [innerText]="locationTxt">定位中....</span>
+                <i class="fa fa-location-arrow pull-right"></i>
+                <div id="center_map"></div>
+              </div>
+            </div>
+            <!--姓名-->
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">您的姓名</label>
+              <div class="col-sm-10">
+                <input type="text" formControlName="name"  class="form-control" id="name" placeholder="请填写" name="name">
+              </div>
+              <div *ngIf="formName.invalid && (formName.dirty || formName.touched)" class="col-sm-2 control-label">
+                <div *ngIf="formName.errors.required">
+                  姓名不能为空
+                </div>
+              </div>
+            </div>
+            <!--联系方式-->
+            <div class="form-group">
+              <label for="phone" number class="col-sm-2 control-label">联系方式</label>
+              <div class="col-sm-10">
+                <input type="text" formControlName="phone" class="form-control" id="phone" name="phone" placeholder="请填写电话">
+              </div>
+              <div *ngIf="formPhone.invalid && (formPhone.dirty || formPhone.touched)" class="col-sm-2 control-label">
+                <div *ngIf="!(formPhone.hasError('mobileValidators','username'))">
+                  请输入合法的手机号
+                </div>
+              </div>
+            </div>
+            <!--描述-->
+            <div class="form-group">
+              <label for="describe" class="col-sm-2 control-label">事件描述</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" formControlName="content" rows="3" id="describe" placeholder="请输入描述事时间内容" name="describe"></textarea>
+              </div>
+              <div *ngIf="formContent.invalid && (formPhone.dirty || formContent.touched)" class="col-sm-2 control-label">
+                <div *ngIf="formContent.errors.required">
+                  事件描述不能为空
+                </div>
+              </div>
+            </div>
+            <!--图片上传-->
+            <div class="form-group">
+              <label for="describe" style="margin-bottom: 25px" class="col-sm-2 control-label">上传图片</label>
+              <div class="col-sm-12">
+                <input type="file" #uploadfiles name="uploadfiles" style="display: none" id="uploadfiles" multiple (change)="onChangeFiles($event,fileImage)">
+                <div class="filebox" id="filebox" (click)="fileboxClick(uploadfiles)">
+                  <div class="fileboxline"></div>
+                  <div class="fileboxlineTwo" style=""></div>
+                </div>
+                <div class="file-image" id="fileImage" #fileImage></div>
+              </div>
+            </div>
+            <!--提交-->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-block btn-primary">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12" >
+        <span></span>
+      </div>
+    </div>
+  </div>
 </div>
-<div  #baidumap style="height: 50vh;display: none">
-  <!--<baidu-map style="display: block;height: 50vh" [options]="opts"
-             (loaded)="loadMap($event)"
-             (clicked)="clickmap($event)" >
-
-    &lt;!&ndash;地图标记&ndash;&gt;
-    <marker *ngFor="let marker of markers" [point]="marker.point" [options]="marker.options"  (clicked)="clickMarker($event)"></marker>
-
-    &lt;!&ndash;导航控件&ndash;&gt;
-    <control type="navigation" [options]="controlOpts" (loaded)="controlLoaded($event)"></control>
-
-    &lt;!&ndash;地图全景控件&ndash;&gt;
-    <control type="overviewmap" [options]="overviewmapOpts"></control>
-
-    &lt;!&ndash;比例尺&ndash;&gt;
-    <control type="scale" [options]="scaleOpts"></control>
-
-    &lt;!&ndash;地图类型&ndash;&gt;
-    <control type="maptype" [options]="mapTypeOpts"></control>
-
-    &lt;!&ndash;定位控件&ndash;&gt;
-    <control type="geolocation" [options]="geolocationOpts" (loaded)="localtionLoaded($event)"></control>
 
 
-  </baidu-map>-->
-</div>
-<div style="color:white;">
-  <form class="form-horizontal" id="commentForm" [formGroup]="myForm" (submit)="onSubmit()">
-    <!--定位-->
-    <div class="form-group">
-      <div class="col-sm-10">
-        <span id="locationText" #locationspan [innerText]="locationTxt">定位中....</span>
-        <i class="fa fa-location-arrow pull-right"></i>
-        <div id="center_map"></div>
-      </div>
-    </div>
-    <!--姓名-->
-    <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">您的姓名</label>
-      <div class="col-sm-10">
-        <input type="text" formControlName="name" minlength="4" maxlength="8" required class="form-control" id="name" placeholder="请填写" name="username">
-      </div>
-      <div *ngIf="formName.invalid && (formName.dirty || formName.touched)" class="col-sm-2 control-label">
-        <div *ngIf="formName.errors.required">
-          姓名不能为空
-        </div>
-      </div>
-    </div>
-    <!--联系方式-->
-    <div class="form-group">
-      <label for="phoneNumber" required number class="col-sm-2 control-label">联系方式</label>
-      <div class="col-sm-10">
-        <input type="text" formControlName="phone" class="form-control" required id="phoneNumber" name="phoneNumber" placeholder="请填写电话">
-      </div>
-      <div *ngIf="formPhone.invalid && (formPhone.dirty || formPhone.touched)" class="col-sm-2 control-label">
-        <div *ngIf="!(formPhone.hasError('mobileValidators','username'))">
-          请输入合法的手机号
-        </div>
-      </div>
-    </div>
-    <!--描述-->
-    <div class="form-group">
-      <label for="describe" class="col-sm-2 control-label">事件描述</label>
-      <div class="col-sm-10">
-        <textarea required class="form-control" formControlName="content" rows="3" id="describe" placeholder="请输入描述事时间内容" name="describe"></textarea>
-      </div>
-      <div *ngIf="formContent.invalid && (formPhone.dirty || formContent.touched)" class="col-sm-2 control-label">
-        <div *ngIf="formContent.errors.required">
-          事件描述不能为空
-        </div>
-      </div>
-    </div>
-    <!--图片上传-->
-    <div class="form-group">
-      <label for="describe" style="margin-bottom: 25px" class="col-sm-2 control-label">上传图片</label>
-      <div class="col-sm-12">
-        <input type="file" #uploadfiles required name="uploadfiles" style="display: none" id="uploadfiles" multiple (change)="onChangeFiles($event,fileImage)">
-        <div class="filebox" id="filebox" (click)="fileboxClick(uploadfiles)">
-          <div class="fileboxline"></div>
-          <div class="fileboxlineTwo" style=""></div>
-        </div>
-        <div class="file-image" id="fileImage" #fileImage></div>
-      </div>
-    </div>
-    <!--提交-->
-    <div class="form-group">
-      <div class="col-sm-12">
-        <button type="submit" class="btn btn-block btn-primary">提交</button>
-      </div>
-    </div>
-  </form>
-</div>
