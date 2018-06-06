@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../shared/login.service';
 import {mobileValidators} from '../../validator/Validators';
 declare let BMap;
+declare let $;
 @Component({
   selector: 'app-form-dispute',
   templateUrl: './form-dispute.component.html',
@@ -13,6 +14,8 @@ declare let BMap;
 export class FormDisputeComponent implements OnInit {
   public title: string;
   public myForm: FormGroup;
+  public disputeTxt: string;
+  public address: string;
   // public myFormTwo: FormGroup;
   public fileDate: FormData = new FormData();
   public locationTxt: string;
@@ -32,12 +35,13 @@ export class FormDisputeComponent implements OnInit {
   ngOnInit() {
     this.locationTxt = '定位中......';
     // this.title = this.routerInfo.snapshot.queryParams['name'];
-    this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
+   /* this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);*/
     this.titleService.setTitle(this.title);
     this.ionViewWillEnter();
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
       phone: ['', [Validators.required, mobileValidators]],
+      card: [''],
       content: ['', [Validators.required]],
     });
     this.formName = this.myForm.get('name');
@@ -94,15 +98,19 @@ export class FormDisputeComponent implements OnInit {
           this.fileDate.append('title', this.locationTxt);
           this.fileDate.append('name', this.myForm.value.name);
           this.fileDate.append('phone', this.myForm.value.phone);
+          this.fileDate.append('card', this.myForm.value.card);
           this.fileDate.append('content', this.myForm.value.content);
           this.fileDate.append('type', '矛盾纠纷诉求');
-          this.loginService.addRecord(this.fileDate).subscribe((data) => {
+          this.fileDate.append('address', this.address);
+          this.fileDate.append('dispute', this.disputeTxt);
+          console.log(this.fileDate.get('address'));
+         /* this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
               alert(data.msg);
             } else {
               alert('提交失败');
             }
-          });
+          });*/
         } else {
           alert('一分钟后才可第二次提交');
         }
@@ -113,5 +121,12 @@ export class FormDisputeComponent implements OnInit {
       alert('请输入资料');
     }
   }
-
+  // 选择纠纷类型
+  public disputeClick(event): void {
+    this.disputeTxt = event.srcElement.innerText;
+  }
+  // 选择村镇
+  public selectChange(): void {
+    this.address = '贵州省铜仁市江口县闵孝镇' + $('#select option:selected').text();
+  }
 }

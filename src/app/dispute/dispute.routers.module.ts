@@ -8,8 +8,8 @@ const loginRoutes: Routes = [
     path: '',
     component: DisputeComponent,
     children: [
-      {path: '', redirectTo: 'main', pathMatch: 'full'},
-      {path: 'main', component: MainDisputeComponent},
+      {path: '', redirectTo: 'disform', pathMatch: 'full'},
+      // {path: 'main', component: MainDisputeComponent},
       {path: 'disform', component: FormDisputeComponent}
     ]
   },

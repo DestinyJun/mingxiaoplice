@@ -46,6 +46,45 @@
                 </div>
               </div>
             </div>
+            <!--身份证-->
+            <div class="form-group">
+              <label for="card" number class="col-sm-2 control-label">身份证号</label>
+              <div class="col-sm-10">
+                <input type="text" formControlName="card" class="form-control" id="card" name="card" placeholder="请填写身份证号/选填">
+              </div>
+            </div>
+            <!--地址-->
+            <div class="form-group">
+              <label  for="adress1" class="col-sm-2 control-label">请选择地址</label>
+              <div class="col-sm-10 adress">
+                <input type="email" class="form-control" id="adress1" value="贵州省铜仁市江口县闵孝镇" disabled>
+                <select class="form-control" style="margin-top: 5px" (change)="selectChange()" id="select">
+                  <option>请选择村</option>
+                  <option>哨上社区</option>
+                  <option>闵家场村</option>
+                  <option>鱼良溪村</option>
+                  <option>中练村</option>
+                  <option>提红村</option>
+                  <option>双屯村</option>
+                  <option>沙坝河村</option>
+                  <option>新岭村</option>
+                  <option>峰坝村</option>
+                  <option>平寨村</option>
+                </select>
+              </div>
+            </div>
+            <!--纠纷类型-->
+            <div class="form-group">
+              <label for="dispute" number class="col-sm-2 control-label">纠纷类型</label>
+              <div class="col-sm-10 dispute-btn">
+                <button (click)="disputeClick($event)" type="button" class="btn btn-primary">林地纠纷</button>
+                <button (click)="disputeClick($event)" type="button" class="btn btn-danger">家事纠纷</button>
+                <button (click)="disputeClick($event)" type="button" class="btn btn-info">合同纠纷</button>
+                <button (click)="disputeClick($event)" type="button" class="btn btn-default">用水纠纷</button>
+                <button (click)="disputeClick($event)" type="button" class="btn btn-success">相邻纠纷</button>
+                <button (click)="disputeClick($event)" type="button" class="btn btn-info">劳资纠纷</button>
+              </div>
+            </div>
             <!--描述-->
             <div class="form-group">
               <label for="describe" class="col-sm-2 control-label">事件描述</label>

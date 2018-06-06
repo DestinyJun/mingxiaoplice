@@ -29,3 +29,12 @@
 .error{
   color:red;
 }
+.dispute-btn button{
+  margin-top: 5px;
+}
+.dispute-btn button:hover{
+  background: black;
+}
+.adress input,select{
+  color: black;
+}

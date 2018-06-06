@@ -30,14 +30,16 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、婚育证明(两地各一份)。</p>
       `
       },
-      {name: '控告申诉', url: '../formwork', imgUrl: 'url(/assets/images/告警日志.png)', bgColor: '#78BA00',
+      {name: '流动人口', url: '../formwork', imgUrl: 'url(/assets/images/人口库.png)', bgColor: '#78BA00',
         text: `
-     <p>提交材料：</p>
-      <p>1、 起诉状；</p>
-      <p>2、原、被告的身份证明；</p>
-      <p>3、 公民本人、法人的法定代表人、其他组织的负责人不能亲自参加诉讼活动的，应当提交授权委托书。；</p>
+      <p>准备资料：</p>
+      <p>1、申请人的书面申请</p>
+      <p>2、夫妻双方的户口本、身份证原件及复印件。</p>
+      <p>3、结婚证。</p>
+      <p>4、户口证明。</p>
+      <p>5、婚育证明(两地各一份)。</p>
       `
-      }
+      },
     ],
     [
       {name: '司法援助', url: '../formwork', imgUrl: 'url(/assets/images/司法.png)', bgColor: '#E74C3C',
@@ -47,7 +49,7 @@ export class MianWorkflowComponent implements OnInit {
       应当提供本人及其家庭经济状况符合当地民政、劳动和社会保障等部门规定的公民经济困难标准的证明。
       </p>
       `},
-      {name: '律师在线', url: '../formwork', imgUrl: 'url(/assets/images/律师事务所.png)', bgColor: '#78BA00',
+      {name: '法律咨询', url: '../formwork', imgUrl: 'url(/assets/images/律师事务所.png)', bgColor: '#78BA00',
         text: `
        <p>请填写以下个人信息并提交</p>
       `
@@ -72,16 +74,6 @@ export class MianWorkflowComponent implements OnInit {
       <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
       <p>5、与申请公证的事项有关的其他材料；</p>
       `},
-      {name: '流动人口', url: '../formwork', imgUrl: 'url(/assets/images/人口库.png)', bgColor: '#3498DB',
-        text: `
-      <p>准备资料：</p>
-      <p>1、申请人的书面申请</p>
-      <p>2、夫妻双方的户口本、身份证原件及复印件。</p>
-      <p>3、结婚证。</p>
-      <p>4、户口证明。</p>
-      <p>5、婚育证明(两地各一份)。</p>
-      `
-      },
       {name: '出入境窗口', url: '../formwork', imgUrl: 'url(/assets/images/出入库.png)', bgColor: '#E74C3C',
         text: `
      <p>办理条件：</p>

@@ -38,6 +38,7 @@ export class FormAlarmComponent implements OnInit {
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
       phone: ['', [Validators.required, mobileValidators]],
+      card: [''],
       content: ['', [Validators.required]],
     });
     this.formName = this.myForm.get('name');
@@ -94,6 +95,7 @@ export class FormAlarmComponent implements OnInit {
           this.fileDate.append('title', this.locationTxt);
           this.fileDate.append('name', this.myForm.value.name);
           this.fileDate.append('phone', this.myForm.value.phone);
+          this.fileDate.append('card', this.myForm.value.card);
           this.fileDate.append('content', this.myForm.value.content);
           this.fileDate.append('type', '我要报警');
           this.loginService.addRecord(this.fileDate).subscribe((data) => {
