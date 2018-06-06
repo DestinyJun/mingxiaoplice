@@ -3,12 +3,19 @@
   <span class="h3">闵孝镇政法110微信平台</span>
 </div>
 <div class="nav">
-  <div class="nav-child1">
-    <a class="btn btn-lg btn-danger" [routerLink]="['../alarmf',{name:'治安事件报警'}]">治安事件报警</a>
-    <a class="btn btn-lg btn-danger pull-right" [routerLink]="['../alarmf',{name:'刑事案件报警'}]">刑事案件报警</a>
+  <div>
+    <a class="" [routerLink]="['../alarmf',{name:'报警'}]"
+       style="background-color: #3498DB; background-image:url('/assets/images/入侵报警.png');"></a>
+    <p class="text-center">报警</p>
   </div>
-  <div class="nav-child12">
-    <a class="btn btn-lg btn-danger" [routerLink]="['../alarmf',{name:'安全事故报警'}]">安全事故报警</a>
-    <a class="btn btn-lg btn-danger pull-right" [routerLink]="['../alarmf',{name:'犯罪线索举报'}]">犯罪线索举报</a>
+  <div>
+    <a class="" [routerLink]="['../alarmf',{name:'举报'}]"
+       style="background-color: #E74C3C;background-image:url('/assets/images/举报.png');"></a>
+    <p class="text-center">举报</p>
   </div>
+ <div>
+   <a class="" [routerLink]="['../alarmf',{name:'求助'}]"
+      style="background-color: #78BA00;background-image: url('/assets/images/求助分组管理.png');."></a>
+   <p class="text-center">求助</p>
+ </div>
 </div>

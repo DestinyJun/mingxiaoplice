@@ -1,8 +1,7 @@
 .alarm{
   min-height: 100vh;
-  background-image: url('/assets/images/bg_list.png');
+  background-color: #001340;
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
-  padding: 3px 5px;
 }
