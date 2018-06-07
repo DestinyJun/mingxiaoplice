@@ -99,6 +99,7 @@ export class FromFeedbackComponent implements OnInit {
           this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
               alert(data.msg);
+              window.location.reload();
             } else {
               alert('提交失败');
             }

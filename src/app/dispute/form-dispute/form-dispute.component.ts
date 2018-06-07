@@ -104,14 +104,14 @@ export class FormDisputeComponent implements OnInit {
           this.fileDate.append('type', '矛盾纠纷诉求');
           this.fileDate.append('address', this.address);
           this.fileDate.append('dispute', this.disputeTxt);
-          console.log(this.fileDate.get('address'));
-         /* this.loginService.addRecord(this.fileDate).subscribe((data) => {
+          this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
               alert(data.msg);
+              window.location.reload();
             } else {
               alert('提交失败');
             }
-          });*/
+          });
         } else {
           alert('一分钟后才可第二次提交');
         }
