@@ -81,8 +81,9 @@ export class FormDisputeComponent implements OnInit {
         const url = read.result;
         const p = document.createElement('img');
         p.src = url;
-        p.width = 50;
-        p.style.marginLeft = '15px';
+        p.style.width = '50px';
+        p.style.height = 'auto';
+        p.style.marginRight = '10px';
         fileImage.appendChild(p);
       };
     }

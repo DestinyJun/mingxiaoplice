@@ -99,13 +99,10 @@
             </div>
             <!--图片上传-->
             <div class="form-group">
-              <label for="describe" style="margin-bottom: 25px" class="col-sm-2 control-label">上传图片</label>
+              <label for="describe" style="margin-bottom: 25px" class="col-sm-2 control-label">请上传身份证或现场图片</label>
               <div class="col-sm-12">
                 <input type="file" #uploadfiles name="uploadfiles" style="display: none" id="uploadfiles" multiple (change)="onChangeFiles($event,fileImage)">
-                <div class="filebox" id="filebox" (click)="fileboxClick(uploadfiles)">
-                  <div class="fileboxline"></div>
-                  <div class="fileboxlineTwo" style=""></div>
-                </div>
+                <div class="filebox" id="filebox" (click)="fileboxClick(uploadfiles)"></div>
                 <div class="file-image" id="fileImage" #fileImage></div>
               </div>
             </div>

@@ -168,15 +168,15 @@ export class FromWorkflowComponent implements OnInit {
     // 利用ngfor循环创建dom元素，点击一次，就让数组发生变化
     for (let i = 0; i < fileList.length; i++) {
       this.fileDate.append('file', fileList[i]);
-      console.log(this.fileDate.get('file'));
       const read = new FileReader();
       read.readAsDataURL(fileList[i]);
       read.onload = function () {
         const url = read.result;
         const p = document.createElement('img');
         p.src = url;
-        p.width = 50;
-        p.style.marginLeft = '15px';
+        p.style.width = '50px';
+        p.style.height = 'auto';
+        p.style.marginRight = '10px';
         fileImage.appendChild(p);
       };
     }

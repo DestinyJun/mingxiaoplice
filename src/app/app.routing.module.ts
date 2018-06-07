@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
-  {path: '', redirectTo: 'dispute', pathMatch: 'full'},
+  {path: '', redirectTo: 'alarm', pathMatch: 'full'},
   {path: 'login', loadChildren: 'app/login/login.module#LoginModule'},
   {path: 'register', loadChildren: 'app/register/register.module#RegisterModule'},
   {path: 'alarm', loadChildren: 'app/alarm/alarm.module#AlarmModule'},
