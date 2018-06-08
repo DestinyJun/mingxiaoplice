@@ -1,13 +1,22 @@
 <div class="header text-center">
-  <img src="assets/images/logo.png" alt="">
-  <span class="h4">闵孝镇政法110微信平台</span>
+  <img src="assets/images/logo.png" alt="" class="btn-block">
+  <span>闵孝镇政法110微信平台</span>
 </div>
-<div class="nav" *ngFor="let list of navList;">
-  <div class="nav-child" *ngFor="let listItem of list;">
-    <a
-      [ngStyle]="{'background-color':listItem.bgColor,'background-image': listItem.imgUrl}"
-      [routerLink]="[listItem.url,{name: listItem.name, text: listItem.text}]">
-    </a>
-    <p class="text-center">{{listItem.name}}</p>
+<div class="inform">
+  <h4 class="text-primary">
+    <span class="glyphicon glyphicon-volume-up text-danger" aria-hidden="true"></span>
+    欢迎进入闵孝镇政法110微信平台，我们将竭诚为您服务！
+  </h4>
+</div>
+<div style="background: #533B79;">
+  <div class="nav" *ngFor="let list of navList;">
+    <div class="nav-child" *ngFor="let listItem of list;">
+      <a
+        [ngStyle]="{'background-color':listItem.bgColor,'background-image': listItem.imgUrl}"
+        [routerLink]="[listItem.url,{name: listItem.name, text: listItem.text}]">
+      </a>
+      <p class="text-center">{{listItem.name}}</p>
+    </div>
   </div>
 </div>
+

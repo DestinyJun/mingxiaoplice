@@ -36,7 +36,7 @@ export class FormDisputeComponent implements OnInit {
     this.locationTxt = '定位中......';
     // this.title = this.routerInfo.snapshot.queryParams['name'];
    /* this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);*/
-    this.titleService.setTitle(this.title);
+    this.titleService.setTitle('闵孝镇政法110矛盾纠纷受理平台');
     this.ionViewWillEnter();
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],

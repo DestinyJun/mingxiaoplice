@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+/*注意初始样式必须写在最顶部！！！！如果写在媒体查询底部的话就会覆盖上方的媒体查询（因为是层叠样式表嘛~）*/
+html,body{
+  font-size: 14px;
+}
+@media screen and (max-width:320px ) {
+  html{font-size: 12px;}
+}
+@media screen and (min-width:321px) and (max-width:750px ) {
+  html{font-size: 14px;}
+}
+@media screen and (min-width:751px ) {
+  html{font-size: 16px;}
+}
+
+
 .loading{
   text-align: center;
   height: 100vh;

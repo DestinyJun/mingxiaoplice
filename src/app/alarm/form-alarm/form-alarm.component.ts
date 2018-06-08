@@ -31,8 +31,12 @@ export class FormAlarmComponent implements OnInit {
 
   ngOnInit() {
     this.locationTxt = '定位中......';
-    // this.title = this.routerInfo.snapshot.queryParams['name'];
-    this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
+    this.title = this.routerInfo.snapshot.queryParams['name'];
+   /* this.routerInfo.params.subscribe((params: Params) => {
+      this.title = params.name;
+      console.log(this.title);
+    });*/
+
     this.titleService.setTitle(this.title);
     this.ionViewWillEnter();
     this.myForm = this.fb.group({

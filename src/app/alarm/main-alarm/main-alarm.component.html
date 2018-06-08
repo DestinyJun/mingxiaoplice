@@ -1,27 +1,30 @@
 <div class="header text-center">
-  <img src="assets/images/logo.png" alt="">
-  <span class="h3">闵孝镇政法110微信平台</span>
+  <img src="assets/images/logo.png" alt="" class="btn-block">
+  <span>闵孝镇政法110微信平台</span>
+</div>
+<div class="inform">
+  <h4 class="text-primary">
+    <span class="glyphicon glyphicon-volume-up text-danger" aria-hidden="true"></span>
+    欢迎进入闵孝镇政法110报警平台，我们将竭诚为您服务！
+  </h4>
 </div>
 <div class="nav">
-  <div>
-    <a class="" [routerLink]="['../alarmf',{name:'报警'}]"
-       style="background-color: #3498DB; background-image:url('assets/images/入侵报警.png');"></a>
+  <div [queryParams]="{name:'报警'}" [routerLink]="['../alarmf']">
+    <a style="background-color: #3498DB; background-image:url('assets/images/入侵报警.png');"></a>
     <p class="text-center">报警</p>
   </div>
-  <div>
-    <a class="" [routerLink]="['../alarmf',{name:'举报'}]"
-       style="background-color: #E74C3C;background-image:url('assets/images/举报.png');"></a>
+  <div [queryParams]="{name:'举报'}" [routerLink]="['../alarmf']">
+    <a style="background-color: #E74C3C;background-image:url('assets/images/举报.png');"></a>
     <p class="text-center">举报</p>
   </div>
- <div>
-   <a class="" [routerLink]="['../alarmf',{name:'求助'}]"
-      style="background-color: #78BA00;background-image: url('assets/images/求助分组管理.png');."></a>
+  <div [queryParams]="{name:'求助'}" [routerLink]="['../alarmf']">
+   <a class="" style="background-color: #78BA00;background-image: url('assets/images/求助分组管理.png');"></a>
    <p class="text-center">求助</p>
  </div>
 </div>
-<div class="text-danger navbar-fixed-bottom" style="padding: 20px 10px">
-  <h4>
-    <span style="margin-left: 20px"></span>注意：此平台仅适用于发生在铜仁地区江口县闵孝镇范围内，属公安机关管辖的案件线索举报和不文明行为以及需要的求助，非闵孝镇范围，非案件线索和非不文明行为，请通过其他方式实现，我局不予受理。
-    举报线索和不文明行为，经查证属实的，我局将通过微信红包对你进行奖励。
-  </h4>
+<div class="footer text-info">
+  <h4><span style="color: orangered;font-weight: bolder">注意：</span>此平台仅限于闵孝镇管理案件（事件），其他辖区管辖案件（事件）请通过其他方式实现</h4>
+  <h4>★当生命财产安全受到危害、威胁和攻击，发现黄禁毒赌违法行为时选择报警；</h4>
+  <h4>★当您发现违法违纪、黑恶案件线索时，请选择举报，需如实反应事实，我们将为您保密并执行有关奖励规定。</h4>
+  <h4>★当你及身边的人需要帮助时，请选择求助。</h4>
 </div>

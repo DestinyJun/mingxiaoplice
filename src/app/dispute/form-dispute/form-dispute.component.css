@@ -1,6 +1,37 @@
-.container-fluid{
-  color: white;
+.header{
+  height: 30vh;
+  background: #317EF3;
+  border-bottom: 1px solid white;
+  padding: 1rem 1rem;
 }
+.header img{
+  height: 15vh;
+  width: auto;
+  margin: 0 auto;
+}
+.header span{
+  display: inline-block;
+  color: white;
+  font-size: 1.6rem;
+  padding-top: 1.6rem;
+}
+
+
+.inform{
+  /*border-bottom:1px solid #000*/
+}
+.inform h4{
+  padding:0 10px;
+}
+.inform h4 span{
+  font-size: 2rem;
+  vertical-align: middle
+}
+
+
+.container-fluid{}
+
+
 .filebox{
   width: 80px;
   height: 70px;

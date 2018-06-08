@@ -1,26 +1,43 @@
 .header{
+  height: 30vh;
+  background: #317EF3;
   border-bottom: 1px solid white;
+  padding: 1rem 1rem;
 }
 .header img{
-  width: 25vw;
-  height: auto;
-  padding: 15px 10px;
-
+  height: 15vh;
+  width: auto;
+  margin: 0 auto;
 }
 .header span{
+  display: inline-block;
   color: white;
+  font-size: 1.6rem;
+  padding-top: 1.6rem;
 }
 
+.inform{
+  /*border-bottom:1px solid #000*/
+}
+.inform h4{
+  padding:0 10px;
+}
+.inform h4 span{
+  font-size: 2rem;
+  vertical-align: middle
+}
 
 .nav {
   display: flex;
+  background: #533B79;
   justify-content: space-between;
+  align-items: center;
   padding-top: 15px;
 }
 .nav a{
   display: block;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 15px;
   -webkit-background-size: 70% 70%;
   background-size: 70% 70%;
@@ -29,6 +46,11 @@
 }
 .nav p{
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-top: 10px;
+}
+
+.footer{
+  padding: 20px 10px;
+  letter-spacing: 2px;
 }
