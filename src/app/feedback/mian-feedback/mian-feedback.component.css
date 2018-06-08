@@ -24,7 +24,8 @@
 }
 .inform h4 span{
   font-size: 2rem;
-  vertical-align: middle
+  vertical-align: middle;
+  letter-spacing: 3px;
 }
 
 

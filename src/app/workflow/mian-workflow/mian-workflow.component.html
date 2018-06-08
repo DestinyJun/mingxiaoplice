@@ -12,6 +12,7 @@
   <div class="nav" *ngFor="let list of navList;">
     <div class="nav-child" *ngFor="let listItem of list;">
       <a
+        href="{{listItem.linkUrl}}"
         [ngStyle]="{'background-color':listItem.bgColor,'background-image': listItem.imgUrl}"
         [routerLink]="[listItem.url,{name: listItem.name, text: listItem.text}]">
       </a>

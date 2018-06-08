@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 @Component({
@@ -9,7 +9,8 @@ import {Title} from '@angular/platform-browser';
 export class MianWorkflowComponent implements OnInit {
   public navList = [
     [
-      {name: '网上立案', url: '../formwork', imgUrl: 'url(assets/images/接洽案件.png)', bgColor: '#3498DB',
+      {
+        name: '网上立案', url: '../formwork', imgUrl: 'url(assets/images/接洽案件.png)', bgColor: '#3498DB',
         text: `
       选择法院>>
     填写立案人姓名、联系方式>>
@@ -20,7 +21,8 @@ export class MianWorkflowComponent implements OnInit {
     等待法院回复
       `
       },
-      {name: '户籍办理', url: '../formwork', imgUrl: 'url(assets/images/身份证.png)', bgColor: '#E74C3C',
+      {
+        name: '户籍办理', url: '../formwork', imgUrl: 'url(assets/images/身份证.png)', bgColor: '#E74C3C',
         text: `
       <p>准备资料：</p>
       <p>1、申请人的书面申请</p>
@@ -30,7 +32,8 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、婚育证明(两地各一份)。</p>
       `
       },
-      {name: '流动人口', url: '../formwork', imgUrl: 'url(assets/images/人口库.png)', bgColor: '#78BA00',
+      {
+        name: '流动人口', url: '../formwork', imgUrl: 'url(assets/images/人口库.png)', bgColor: '#78BA00',
         text: `
       <p>准备资料：</p>
       <p>1、申请人的书面申请</p>
@@ -42,19 +45,23 @@ export class MianWorkflowComponent implements OnInit {
       },
     ],
     [
-      {name: '司法援助', url: '../formwork', imgUrl: 'url(assets/images/司法.png)', bgColor: '#E74C3C',
+      {
+        name: '司法援助', url: '../formwork', imgUrl: 'url(assets/images/司法.png)', bgColor: '#E74C3C',
         text: `
        <p>提交书面申请和足以证明其确有经济困难的证明材料。
       其中因生活困难或者追索基本生活费用申请司法救助的，
       应当提供本人及其家庭经济状况符合当地民政、劳动和社会保障等部门规定的公民经济困难标准的证明。
       </p>
-      `},
-      {name: '法律咨询', url: '../formwork', imgUrl: 'url(assets/images/律师事务所.png)', bgColor: '#78BA00',
+      `
+      },
+      {
+        name: '法律咨询', url: '../formwork', imgUrl: 'url(assets/images/律师事务所.png)', bgColor: '#78BA00',
         text: `
        <p>请填写以下个人信息并提交</p>
       `
       },
-      {name: '法律援助', url: '../formwork', imgUrl: 'url(assets/images/法律声明.png)', bgColor: '#3498DB ',
+      {
+        name: '法律援助', url: '../formwork', imgUrl: 'url(assets/images/法律声明.png)', bgColor: '#3498DB ',
         text: `
       <p>需要以下资料：</p>
       <p>1.身份证明材料；</p>
@@ -65,7 +72,8 @@ export class MianWorkflowComponent implements OnInit {
       }
     ],
     [
-      {name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
+      {
+        name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
         text: `
        <p>请准备以下资料：</p>
       <p>1、自然人的身份证明；</p>
@@ -73,8 +81,25 @@ export class MianWorkflowComponent implements OnInit {
       <p>3、申请公证的文书；</p>
       <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
       <p>5、与申请公证的事项有关的其他材料；</p>
-      `},
-      {name: '出入境窗口', url: '../formwork', imgUrl: 'url(assets/images/出入库.png)', bgColor: '#E74C3C',
+      `
+      },
+      {
+        name: '法规查询',
+        url: '',
+        imgUrl: 'url(assets/images/法律法规查询.png)',
+        bgColor: '#3498DB ',
+        linkUrl: 'http://www.legalinfo.gov.cn/node_66701.htm',
+        text: `
+       <p>请准备以下资料：</p>
+      <p>1、自然人的身份证明；</p>
+      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
+      <p>3、申请公证的文书；</p>
+      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
+      <p>5、与申请公证的事项有关的其他材料；</p>
+      `
+      },
+      {
+        name: '出入境窗口', url: '../formwork', imgUrl: 'url(assets/images/出入库.png)', bgColor: '#E74C3C',
         text: `
      <p>办理条件：</p>
       <p>1、首次申请护照：</p>
@@ -91,7 +116,9 @@ export class MianWorkflowComponent implements OnInit {
       }
     ],
   ];
-  constructor(private titleService: Title) { }
+
+  constructor(private titleService: Title) {
+  }
 
   ngOnInit() {
     this.titleService.setTitle('我要咨询');
