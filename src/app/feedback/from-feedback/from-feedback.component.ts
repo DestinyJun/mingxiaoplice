@@ -43,6 +43,7 @@ export class FromFeedbackComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
+    console.log(this.title);
     this.routerInfo.params.subscribe((params: Params) => {
       this.text = params['text'];
     });
@@ -95,7 +96,7 @@ export class FromFeedbackComponent implements OnInit {
           this.fileDate.append('phone', this.myForm.value.phone);
           this.fileDate.append('card', this.myForm.value.card);
           this.fileDate.append('content', this.myForm.value.content);
-          this.fileDate.append('type', '民情通道');
+          this.fileDate.append('type', this.title);
           this.loginService.addRecord(this.fileDate).subscribe((data) => {
             if (data.success) {
               alert(data.msg);

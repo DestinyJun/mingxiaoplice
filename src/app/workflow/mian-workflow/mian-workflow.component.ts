@@ -44,6 +44,17 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、婚育证明(两地各一份)。</p>
       `
       },
+      {
+        name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
+        text: `
+       <p>请准备以下资料：</p>
+      <p>1、自然人的身份证明；</p>
+      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
+      <p>3、申请公证的文书；</p>
+      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
+      <p>5、与申请公证的事项有关的其他材料；</p>
+      `
+      },
     ],
     [
       {
@@ -66,19 +77,6 @@ export class MianWorkflowComponent implements OnInit {
       `
       },
       {
-        name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
-        text: `
-       <p>请准备以下资料：</p>
-      <p>1、自然人的身份证明；</p>
-      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
-      <p>3、申请公证的文书；</p>
-      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
-      <p>5、与申请公证的事项有关的其他材料；</p>
-      `
-      },
-    ],
-    [
-      {
         name: '出入境窗口', url: '../formwork', imgUrl: 'url(assets/images/出入库.png)', bgColor: '#E74C3C',
         text: `
      <p>办理条件：</p>
@@ -94,13 +92,13 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、监护人材料</p>
       `
       }
-    ],
+    ]
   ];
 
   constructor(private titleService: Title) {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('我要咨询');
+    this.titleService.setTitle('微服务');
   }
 }
