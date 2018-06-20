@@ -1,0 +1,31 @@
+<div class="header text-center">
+  <img src="assets/images/logo.png" alt="" class="btn-block">
+  <span>生活服务微信平台</span>
+</div>
+<div class="inform">
+  <h4 class="text-primary">
+    <span class="glyphicon glyphicon-volume-up text-danger" aria-hidden="true"></span>
+    欢迎进入闵孝镇政法110报警平台，我们将竭诚为您服务！
+  </h4>
+</div>
+<div class="nav">
+  <div [queryParams]="{name:'快递超市'}" [routerLink]="['../list']">
+    <a style="background-color: #3498DB; background-image:url('assets/images/快递.png');"></a>
+    <p class="text-center">快递超市</p>
+  </div>
+  <div [queryParams]="{name:'开锁换锁'}" [routerLink]="['../list']">
+    <a style="background-color: #78BA00;background-image:url('assets/images/开锁.png');"></a>
+    <p class="text-center">开锁换锁</p>
+  </div>
+  <div [queryParams]="{name:'家政清洁'}" [routerLink]="['../list']">
+    <a class="" style="background-color: #E8A400;background-image: url('assets/images/swt-icon-家政员.png');"></a>
+    <p class="text-center">家政清洁</p>
+  </div>
+  <div [queryParams]="{name:'水电维修'}" [routerLink]="['../list']">
+    <a class="" style="background-color: #E74C3C;background-image: url('assets/images/水电维修.png');"></a>
+    <p class="text-center">水电维修</p>
+  </div>
+</div>
+<div class="footer text-info">
+  <h4>★生活服务，总有你需要的</h4>
+</div>

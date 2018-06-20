@@ -1,0 +1,94 @@
+.header{
+  height: 30vh;
+  background: #317EF3;
+  border-bottom: 1px solid white;
+  padding: 1rem 1rem;
+}
+.header img{
+  height: 15vh;
+  width: auto;
+  margin: 0 auto;
+}
+.header span{
+  display: inline-block;
+  color: white;
+  font-size: 1.6rem;
+  padding-top: 1.6rem;
+}
+
+.container-fluid{}
+.menu{
+  height: 6vh;
+  line-height: 5vh;
+  border-bottom:1px solid #E6E6E6 ;
+}
+.list{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E6E6E6;
+}
+.logo{
+  flex-grow: 1;
+}
+.titles{
+  flex-grow: 2;
+  width: 60vw;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+.titles-p{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+
+}
+.phone{
+  flex-grow: 1;
+}
+
+.filebox{
+  width: 80px;
+  height: 70px;
+  padding: 5px;
+  position: relative;
+  border-radius: 5px;
+  background: #E74C3C;
+  background-image:url('/assets/images/图片.png');
+  -webkit-background-size: 70% 70%;
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.fileboxline{
+  position: absolute;
+  height: 1px;
+  width: 45px;
+  background: #767676;
+  top: 28px;
+
+}
+.fileboxlineTwo{
+  position: absolute;
+  border-left:  1px solid #767676;
+  height: 45px;
+  width: 45px;
+  left: 28px;
+}
+.file-image{
+  margin-top: 15px;
+}
+.error{
+  color:red;
+}
+.img-responsive{
+  height: 50px;
+}
+.a{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+}
