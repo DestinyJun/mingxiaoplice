@@ -10,7 +10,8 @@ export class MianWorkflowComponent implements OnInit {
   public navList = [
     [
       {
-        name: '网上立案', url: '../formwork', imgUrl: 'url(assets/images/接洽案件.png)', bgColor: '#3498DB',
+        name: '网上立案', url: '', imgUrl: 'url(assets/images/接洽案件.png)', bgColor: '#3498DB',
+        linkUrl: 'http://58.16.66.85:81/susong51/login/pro.htm?fy=3283&url=%2Fpro%2Flayy%2Findex.htm%3Ffy%3D3283',
         text: `
       选择法院>>
     填写立案人姓名、联系方式>>
@@ -43,6 +44,17 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、婚育证明(两地各一份)。</p>
       `
       },
+      {
+        name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
+        text: `
+       <p>请准备以下资料：</p>
+      <p>1、自然人的身份证明；</p>
+      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
+      <p>3、申请公证的文书；</p>
+      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
+      <p>5、与申请公证的事项有关的其他材料；</p>
+      `
+      },
     ],
     [
       {
@@ -55,12 +67,6 @@ export class MianWorkflowComponent implements OnInit {
       `
       },
       {
-        name: '法律咨询', url: '../formwork', imgUrl: 'url(assets/images/律师事务所.png)', bgColor: '#78BA00',
-        text: `
-       <p>请填写以下个人信息并提交</p>
-      `
-      },
-      {
         name: '法律援助', url: '../formwork', imgUrl: 'url(assets/images/法律声明.png)', bgColor: '#3498DB ',
         text: `
       <p>需要以下资料：</p>
@@ -68,34 +74,6 @@ export class MianWorkflowComponent implements OnInit {
       <p>2.经济困难证明材料；</p>
       <p>3.享有合法权益的证明材料；</p>
       <p>4.法律援助中心认为需要提供的其他材料；</p>
-      `
-      }
-    ],
-    [
-      {
-        name: '公正在线', url: '../formwork', imgUrl: 'url(assets/images/法律法规.png)', bgColor: '#78BA00 ',
-        text: `
-       <p>请准备以下资料：</p>
-      <p>1、自然人的身份证明；</p>
-      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
-      <p>3、申请公证的文书；</p>
-      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
-      <p>5、与申请公证的事项有关的其他材料；</p>
-      `
-      },
-      {
-        name: '法规查询',
-        url: '',
-        imgUrl: 'url(assets/images/法律法规查询.png)',
-        bgColor: '#3498DB ',
-        linkUrl: 'http://www.legalinfo.gov.cn/node_66701.htm',
-        text: `
-       <p>请准备以下资料：</p>
-      <p>1、自然人的身份证明；</p>
-      <p>2、委托他人代为申请的，代理人须提交当事人的授权委托书；</p>
-      <p>3、申请公证的文书；</p>
-      <p>4、申请公证的事项的证明材料，涉及财产关系的须提交有关财产权利证明；</p>
-      <p>5、与申请公证的事项有关的其他材料；</p>
       `
       },
       {
@@ -114,13 +92,13 @@ export class MianWorkflowComponent implements OnInit {
       <p>5、监护人材料</p>
       `
       }
-    ],
+    ]
   ];
 
   constructor(private titleService: Title) {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('我要咨询');
+    this.titleService.setTitle('微服务');
   }
 }
