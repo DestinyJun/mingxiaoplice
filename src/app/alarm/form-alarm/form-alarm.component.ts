@@ -53,7 +53,10 @@ export class FormAlarmComponent implements OnInit {
   public ionViewWillEnter() {
     let that;
     that = this;
-    let map = new BMap.Map(this.mapElement.nativeElement);
+    // 使用百度地图时，并不需要用angular获取dom元素，
+    // 百度地图本身就具备通过ID寻找dom元素的，你又何必多此一举，
+    // 记住了
+    let map = new BMap.Map('baidumap');
     let point = new BMap.Point(106.681659, 26.627171);
     map.centerAndZoom(point, 12);
     let geolocation = new BMap.Geolocation();
