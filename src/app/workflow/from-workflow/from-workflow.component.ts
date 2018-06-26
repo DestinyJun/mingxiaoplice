@@ -17,21 +17,13 @@ import {
   BGeolocationControl,
 } from 'angular2-baidu-map';
 import {mobileValidators} from '../../validator/Validators';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-from-workflow',
   templateUrl: './from-workflow.component.html',
   styleUrls: ['./from-workflow.component.css']
 })
 export class FromWorkflowComponent implements OnInit {
-  public opts: MapOptions;
-  public markers: Array<{ point: Point; options?: MarkerOptions }>;
-  public controlOpts: NavigationControlOptions;
-  public overviewmapOpts: OverviewMapControlOptions;
-  public scaleOpts: ScaleControlOptions;
-  public mapTypeOpts: MapTypeControlOptions;
-  public geolocationOpts: GeolocationControlOptions;
-  /**************************************************/
-  public that: any;
   public locationTxt: string;
   public locationState = false;
   public submitState = true;
@@ -43,14 +35,37 @@ export class FromWorkflowComponent implements OnInit {
   public myForm: FormGroup;
   public myFormTwo: FormGroup;
   public fileDate: FormData = new FormData();
+  // 省市联动数据及状态
+  public formShow = false;
+  public cityShow = false;
+  public countyShow = false;
+  public communityShow = false;
+
+  public citySure = false;
+  public countySure = false;
+  public communitySure = false;
+  public housePurchaseSure = false;
+  public houseRentingSure = false;
+
+  public citys: any;
+  public countys: any;
+  public communitys: any;
+
+  public cityDate = '请选择市...';
+  public countyDate = '请选择区...';
+  public communityDate = '请选择社区...';
 
   @ViewChild('baidumap') mapElement: ElementRef;
+
   constructor(
+    public http: HttpClient,
     private titleService: Title,
     private fb: FormBuilder,
     private routerInfo: ActivatedRoute,
     private loginService: LoginService,
-  ) {}
+  ) {
+  }
+
   ngOnInit() {
     this.routerInfo.params.subscribe((params: Params) => this.title = params['name']);
     this.routerInfo.params.subscribe((params: Params) => {
@@ -70,98 +85,12 @@ export class FromWorkflowComponent implements OnInit {
     this.myFormTwo = new FormGroup({
       first: new FormControl({value: 'Nancy', disabled: true}, Validators.required),
     });
-    this.opts = {
-      centerAndZoom: {     // 设置中心点和缩放级别
-        lng: 106.667287,   // 经度
-        lat: 26.660238,    // 纬度
-        zoom: 15           // 缩放级别
-      },
-      minZoom: 3,  // 最小缩放级别的地图
-      maxZoom: 19, // 最大缩放级别的地图
-      enableHighResolution: true,  // 是否用高分辨率的地图，default：true
-      enableAutoResize: true,  // 是否可以自动调整大小，default：true
-      enableMapClick: true,  // 地图是否可以点击，default：true
-      disableDragging: false, // 是否禁用地图拖动功能
-      enableScrollWheelZoom: true, // 是否启用滚轮进行缩放功能
-      disableDoubleClickZoom: false, // 是否禁用双击缩放功能
-      enableKeyboard: true,  // 是否启用键盘移动地图功能
-      enableInertialDragging: false,     // 是否启用惯性阻力函数
-      enableContinuousZoom: true,  // 是否启用连续缩放功能
-      disablePinchToZoom: false,   // 是否禁用缩放功能的缩放
-      cursor: '',         // 设置默认的光标样式,应该遵循CSS规范
-      draggingCursor: '', // 设置默认的拖动光标样式，应该遵循CSS规范
-      currentCity: '贵阳市',   // 设置当前的城市
-    };
-   // 这是地图标记marker
-    this.markers = [
-      {
-        options: {
-          icon: {
-            imageUrl: '/assets/1.jpg',
-            size: {
-              height: 60,
-              width: 50
-            }
-          },
-          title: 'asdkjgaslfkjasd'
-        },
-        point: {
-          lng: 120.62,   // 经度
-          lat: 31.32,    // 纬度
-        }
-      },
-      {
-        point: {
-          lng: 120.63,   // 经度
-          lat: 31.32,    // 纬度
-        }
-      },
-      {
-        point: {
-          lng: 120.63,   // 经度
-          lat: 31.31,    // 纬度
-        }
-      }
-    ];
-
-    // 导航控件
-    this.controlOpts = {
-      anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,      // 显示的控件的位置
-      type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE,   // 用来描述它是什么样的导航
-      offset: {                                        // 控件的大小
-        width: 30,
-        height: 30
-      },
-      showZoomInfo: true,                             // 是否展示当前的信息
-      enableGeolocation: true                         // 是否启用地理定位功能
-    };
-
-    // 地图全景控件
-    this.overviewmapOpts = {
-      anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT,  // 显示的控件的位置
-      isOpen: true                                    // whf 。。官网里没有说明？？
-    };
-
-    // 比例尺控件
-    this.scaleOpts = {
-      anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
-    };
-
-    // 地图类型控件
-    this.mapTypeOpts = {
-      type: MapTypeControlType.BMAP_MAPTYPE_CONTROL_HORIZONTAL
-    };
-
-    // Geolocation 和Panorama 没有属性
-
-    // location
-    // console.log(this.locations.getAddressComponent());
-    this.ionViewWillEnter();
-
   }
+
   public fileboxClick(uploadfiles): void {
     uploadfiles.click();
   }
+
   public onChangeFiles(e, fileImage): void {
     // console.log(e.srcElement.files);
     const fileList = e.target.files;
@@ -181,8 +110,9 @@ export class FromWorkflowComponent implements OnInit {
       };
     }
   }
+
   public onSubmit(): void {
-    if (this.myForm.valid ) {
+    if (this.myForm.valid) {
       if (this.locationState) {
         if (this.submitState) {
           this.submitState = false;
@@ -214,72 +144,70 @@ export class FromWorkflowComponent implements OnInit {
     }
   }
 
-  /************************百度地图***************************/
-  public ionViewWillEnter() {
-    let that;
-    that = this;
-    that = this;
-    // 使用百度地图时，并不需要用angular获取dom元素，
-    // 百度地图本身就具备通过ID寻找dom元素的，你又何必多此一举，
-    // 记住了
-    let map = new BMap.Map('baidumap');
-    let point = new BMap.Point(106.681659, 26.627171);
-    map.centerAndZoom(point, 12);
-    let geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function (r) {
-      const geoc = new BMap.Geocoder();
-      geoc.getLocation(r.point, function (rs) {
-        that.locationTxt = rs.address;
-        that.locationState = true;
-      });
-    }, {enableHighAccuracy: true});
-    /*geolocation.getCurrentPosition(function (r) {
-      if (this.getStatus() === 0) {
-        console.log(r.point);
-        // var pt = new BMap.Point(r.point.lng,r.point.lat);
-        // console.log(pt);
-        let mk = new BMap.Marker(r.point);
-        map.addOverlay(mk);
-        // map.panTo(pt);
-        let geoc = new BMap.Geocoder();
-        // 创建一个地理位置解析器  解析格式：城市，区县，街道
-        geoc.getLocation(r.point, function (rs) {
-          // console.log(rs);
-          let locationText = rs.address;
-          alert('您的位置：' + rs.address);
-        });
-
-      } else {
-        console.log('请打开GPS' + this.getStatus());
+  // 省市联动
+  public cityClick() {
+    this.cityShow = true;
+    this.countyShow = false;
+    this.communityShow = false;
+    this.citySure = true;
+    this.http.get('/assets/data/citys.json').subscribe(
+      (res) => {
+        this.citys = res;
       }
-    }, {enableHighAccuracy: true});*/
+    );
+  }
+  public countyClick() {
+    this.cityShow = false;
+    this.countyShow = true;
+    this.communityShow = false;
+    this.countySure = true;
+    this.http.get('/assets/data/countys.json').subscribe(
+      (res) => {
+        this.countys = res[0].children;
+      }
+    );
+  }
+  public communityClick() {
+    this.cityShow = false;
+    this.countyShow = false;
+    this.communityShow = true;
+    this.communitySure = true;
+    this.http.get('/assets/data/communitys.json').subscribe(
+      (res) => {
+        this.communitys = res[0].children;
+      }
+    );
   }
 
-
-
-
-
-
-  public loadMap(map: any) {
-    console.log('map instance here', map);
+  public cityDataClick(eventData) {
+    this.cityDate = eventData;
+    this.cityShow = false;
   }
-  public clickMarker(marker: any) {
-    console.log('The clicked marker is', marker);
+  public countyDataClick(eventData) {
+    this.countyDate = eventData;
+    this.countyShow = false;
   }
-  public clickmap(e: any) {
-    console.log(e);
+  public communityDataClick(eventData) {
+    this.communityDate = eventData;
+    this.communityShow = false;
   }
-  public controlLoaded(control: BNavigationControl): void {
-    // console.log('control loaded', control);
+  public housePurchase() {
+  this.housePurchaseSure = true;
+  this.houseRentingSure = false;
   }
-  public localtionLoaded(locals): void {
-    console.log(locals);
-    // console.log('gagagag', locals.C.BC);
-    this.markers =
-      [
-        {
-          point: locals.C.BC
-        }
-      ];
+  public houseRenting() {
+    this.housePurchaseSure = false;
+    this.houseRentingSure = true;
+  }
+  public formShowFun() {
+    if (this.citySure && this.countySure && this.communitySure) {
+      if (this.housePurchaseSure || this.houseRentingSure) {
+        this.formShow = true;
+      } else {
+        window.alert('请选择具体办理事项');
+      }
+    } else {
+      window.alert('请选这区域');
+    }
   }
 }

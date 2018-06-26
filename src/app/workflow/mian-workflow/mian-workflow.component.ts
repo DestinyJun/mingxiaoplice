@@ -23,16 +23,8 @@ export class MianWorkflowComponent implements OnInit {
       `
       },
       {
-        name: '户籍办理', url: '../formwork', imgUrl: 'url(assets/images/身份证.png)', bgColor: '#E74C3C',
-        text: `
-      <p>准备资料：</p>
-      <p>1、申请人的书面申请</p>
-      <p>2、夫妻双方的户口本、身份证原件及复印件。</p>
-      <p>3、结婚证。</p>
-      <p>4、户口证明。</p>
-      <p>5、婚育证明(两地各一份)。</p>
-      `
-      },
+        name: '居住证办理', url: '../formwork', imgUrl: 'url(assets/images/身份证.png)', bgColor: '#E74C3C',
+        text: ``},
       {
         name: '流动人口', url: '../formwork', imgUrl: 'url(assets/images/人口库.png)', bgColor: '#78BA00',
         text: `

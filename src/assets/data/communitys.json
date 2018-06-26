@@ -1,0 +1,10 @@
+[
+  {
+    "county": "南明区",
+    "children": [
+      {"community": "花果园社区"},
+      {"community": "太慈桥社区"},
+      {"community": "湘雅村社区"}
+    ]
+  }
+]

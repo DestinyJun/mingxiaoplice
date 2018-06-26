@@ -1,32 +1,90 @@
 <div class="header text-center">
   <img src="assets/images/logo.png" alt="" class="btn-block">
-  <span>{{title}}流程</span>
+  <span>{{title}}</span>
 </div>
 <div class="container-fluid">
-  <div class="text-info" style="font-size: 1.3rem;padding-top: 15px;letter-spacing: 2px" [innerHTML]="text"></div>
-  <div  #baidumap style="height: 50vh;display: none" id="baidumap"></div>
   <div class="main">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="top">
-          <h4>
-
-          </h4>
+          <div class="location">
+            <span>请选择区域：</span>
+          </div>
+          <div class="select-city">
+            <div class="select-city-touch" (click)="cityClick()">
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+              <span>{{cityDate}}</span>
+            </div>
+           <div class="select-city-touch" (click)="countyClick()">
+            <i class="fa fa-caret-down" aria-hidden="true" ></i>
+            <span>{{countyDate}}</span>
+          </div>
+           <div class="select-city-touch" (click)="communityClick()">
+             <i class="fa fa-caret-down" aria-hidden="true"></i>
+             <span>{{communityDate}}</span>
+           </div>
+          </div>
+          <div class="province-city">
+            <ul class="select-list-city" *ngIf="cityShow">
+              <li *ngFor="let item of citys"
+                  (click)="cityDataClick(item.city)"
+              >
+                {{item.city}}
+              </li>
+            </ul>
+            <ul class="select-list-country" *ngIf="countyShow">
+              <li *ngFor="let item of countys"
+                  (click)="countyDataClick(item.county)"
+              >
+                {{item.county}}
+              </li>
+            </ul>
+            <ul class="select-list-community" *ngIf="communityShow">
+              <li *ngFor="let item of communitys"
+                  (click)="communityDataClick(item.community)"
+              >
+                {{item.community}}
+              </li>
+            </ul>
+          </div>
+          <div class="thing">
+            <span>请选择具体办理事项：</span>
+            <div class="thing-select text-center">
+              <button class="btn btn-danger" (click)="housePurchase()">购房的暂住居住</button>
+              <button class="btn btn-info" (click)="houseRenting()">租房的暂住居民</button>
+            </div>
+            <div class="house-purchase"  *ngIf="housePurchaseSure">
+              <h4>购房的暂住居住</h4>
+              <p>
+                1、房产证（如未办理房产证的提供购房合同）或不动产证（若购买私房，需提供购房合同、原房主身份信息及电话）
+              </p>
+              <p>
+                2、所住人员身份信息（户口本或身份证）
+              </p>
+            </div>
+            <div class="house-renting" *ngIf="houseRentingSure">
+              <h4>租房的暂住居民</h4>
+              <p>
+                1、房东需到派出所签订责任书
+              </p>
+              <p>
+                2、租房人需提供租房合同
+              </p>
+              <p>
+                3、所住人员身份信息（户口本或身份证）
+              </p>
+            </div>
+          </div>
+          <div class="sure">
+            <button class="btn btn-block btn-primary" (click)="formShowFun()">确认办理</button>
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="menu">
+        <div class="menu" *ngIf="formShow">
           <form class="form-horizontal" id="commentForm" [formGroup]="myForm" (submit)="onSubmit()">
-            <!--定位-->
-            <div class="form-group">
-              <div class="col-sm-10">
-                <span id="locationText" #locationspan [innerText]="locationTxt">定位中....</span>
-                <i class="fa fa-location-arrow pull-right"></i>
-                <div id="center_map"></div>
-              </div>
-            </div>
             <!--姓名-->
             <div class="form-group">
               <label for="name" class="col-sm-2 control-label">您的姓名：</label>
@@ -87,13 +145,6 @@
             </div>
           </form>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12" >
-        <span></span>
       </div>
     </div>
   </div>
