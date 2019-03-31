@@ -38,7 +38,7 @@ export class FormAlarmComponent implements OnInit {
     });*/
 
     this.titleService.setTitle(this.title);
-    this.ionViewWillEnter();
+    // this.ionViewWillEnter();
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
       phone: ['', [Validators.required, mobileValidators]],
@@ -93,33 +93,36 @@ export class FormAlarmComponent implements OnInit {
     }
   }
   public onSubmit(): void {
-    if (this.myForm.valid ) {
-      if (this.locationState) {
-        if (this.submitState) {
-          this.submitState = false;
-          setTimeout(() => {
-              this.submitState = true;
-            }, 60000);
-          this.fileDate.append('title', this.locationTxt);
-          this.fileDate.append('name', this.myForm.value.name);
-          this.fileDate.append('phone', this.myForm.value.phone);
-          this.fileDate.append('card', this.myForm.value.card);
-          this.fileDate.append('content', this.myForm.value.content);
-          this.fileDate.append('remark', this.title);
-          this.fileDate.append('type', '我要报警');
-          this.loginService.addRecord(this.fileDate).subscribe((data) => {
-            if (data.success) {
-              alert(data.msg);
-              window.location.reload();
-            } else {
-              alert('提交失败');
-            }
-          });
-        } else {
-          alert('一分钟后才可第二次提交');
-        }
+    console.log(this.myForm.valid);
+    if (this.myForm.valid) {
+     /* if (this.locationState) {
+
       } else {
         alert('请等待定位成功');
+      }*/
+      if (this.submitState) {
+        // this.submitState = false;
+       /* setTimeout(() => {
+          this.submitState = true;
+        }, 60000);*/
+        this.fileDate.append('title', this.locationTxt);
+        this.fileDate.append('name', this.myForm.value.name);
+        this.fileDate.append('phone', this.myForm.value.phone);
+        this.fileDate.append('card', this.myForm.value.card);
+        this.fileDate.append('content', this.myForm.value.content);
+        this.fileDate.append('remark', this.title);
+        this.fileDate.append('type', '我要报警');
+        console.log(this.fileDate.get('uploadfile'));
+        this.loginService.addRecord(this.fileDate).subscribe((data) => {
+          if (data.success) {
+            alert(data.msg);
+            window.location.reload();
+          } else {
+            alert('提交失败');
+          }
+        });
+      } else {
+        alert('一分钟后才可第二次提交');
       }
     } else {
       alert('请输入资料');

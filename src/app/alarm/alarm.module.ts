@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AlarmComponent } from './alarm.component';
 import {AlarmRoutersModule} from './alarm.routers.module';
 import { MainAlarmComponent } from './main-alarm/main-alarm.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormAlarmComponent} from './form-alarm/form-alarm.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AlarmRoutersModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AlarmComponent,
